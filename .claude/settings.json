@@ -5,9 +5,18 @@
         "source": "github",
         "repo": "alirezarezvani/claude-skills"
       }
+    },
+    "stitch-skills": {
+      "source": {
+        "source": "github",
+        "repo": "google-labs-code/stitch-skills"
+      }
     }
   },
   "enabledPlugins": {
+    "stitch-design@stitch-skills": true,
+    "stitch-build@stitch-skills": true,
+    "stitch-utilities@stitch-skills": true,
     "marketing-skills@claude-code-skills": true,
     "c-level-skills@claude-code-skills": true,
     "c-level-agents@claude-code-skills": true,
