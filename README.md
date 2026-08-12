@@ -19,6 +19,8 @@
 
 ## Скиллы
 
+Сводный каталог всех установленных скиллов и плагинов, сгруппированный по назначению: [`docs/skill-library.html`](docs/skill-library.html) ([опубликованная версия](https://claude.ai/code/artifact/dc8049ee-a319-42ac-8548-d48fa27f8a7b)). Обновляется при каждой установке нового скилла — правило описано в [`CLAUDE.md`](CLAUDE.md).
+
 Перенесены из веток `install-taste-remotion-skills`, `install-skills`, `install-frontend-design-skill`, `install-claude-skills` (маркетплейс) и `telegram-plugin-install` репозитория `AnnShchuga/AnnShchuga`. Более ранние частичные PR (`ui-ux-pro-max`-only, `stop-slop`-only, `marketing-skills`-only и т.п.) не переносились — их содержимое целиком входит в перенесённый набор.
 
 Примечание: `agent/skills/` и `.agents/skills/` частично дублируют друг друга по содержимому (два разных механизма вендоринга одних и тех же marketing-скиллов из исходной ветки) — оставлено как было, без дедупликации.
