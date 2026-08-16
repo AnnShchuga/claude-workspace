@@ -5,6 +5,12 @@
         "source": "github",
         "repo": "alirezarezvani/claude-skills"
       }
+    },
+    "karpathy-skills": {
+      "source": {
+        "source": "github",
+        "repo": "multica-ai/andrej-karpathy-skills"
+      }
     }
   },
   "enabledPlugins": {
@@ -96,6 +102,7 @@
     "compliance-team-eu-ai-act@claude-code-skills": true,
     "compliance-team-iso42001@claude-code-skills": true,
     "collab-proof@claude-code-skills": true,
-    "telegram@claude-plugins-official": true
+    "telegram@claude-plugins-official": true,
+    "andrej-karpathy-skills@karpathy-skills": true
   }
 }
