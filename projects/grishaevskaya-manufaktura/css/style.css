@@ -170,7 +170,8 @@ h2.section-title{
   transition: transform .25s var(--ease), background .25s, color .25s, box-shadow .25s;
   white-space: nowrap;
 }
-.btn svg{ width: 18px; height: 18px; }
+.btn svg{ width: 18px; height: 18px; transition: transform .25s var(--ease); }
+.btn:hover svg{ transform: translateX(3px); }
 .btn-primary{
   background: var(--walnut);
   color: var(--cream);
@@ -326,7 +327,7 @@ h2.section-title{
   border-radius: var(--radius);
   position: relative;
   overflow: hidden;
-  background: #3a2820 url('../assets/wood/wood-1.jpg') center/cover;
+  background: #3a2820 url('../assets/photos/hero-kitchen.jpg') 62% center/cover;
   box-shadow: 0 40px 80px -30px rgba(0,0,0,.6);
 }
 .hero-panel .frame{
@@ -396,8 +397,13 @@ h2.section-title{
   font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1; display:block;
   transition: color .3s;
 }
-.service-mark{ width: 40px; height: 36px; color: var(--walnut); flex: none; opacity: .85; }
-.service-card:hover .service-mark{ color: var(--brass-dark); }
+.service-mark{ width: 40px; height: 36px; color: var(--walnut); flex: none; opacity: .85; transform-origin: 50% 60%; }
+.service-card:hover .service-mark{ color: var(--brass-dark); animation: mark-wiggle .5s var(--ease); }
+@keyframes mark-wiggle{
+  0%, 100%{ transform: rotate(0); }
+  25%{ transform: rotate(-4deg); }
+  75%{ transform: rotate(4deg); }
+}
 .service-card h3{ font-size: 1.15rem; margin-bottom: .5rem; }
 .service-card p{ color: var(--walnut-2); font-size: .92rem; max-width: 30ch; }
 
@@ -602,7 +608,8 @@ h2.section-title{
 .cta-copy .lede{ margin-top: 1.2rem; max-width: 44ch; color: rgba(247,243,238,.75); }
 .cta-links{ margin-top: 2.2rem; display: flex; flex-direction: column; gap: .9rem; }
 .cta-links a{ display:flex; align-items:center; gap: .8rem; font-family: var(--font-display); font-weight:700; font-size: 1.05rem; color: var(--cream); }
-.cta-links a svg{ width: 20px; height: 20px; color: var(--sand); }
+.cta-links a svg{ width: 20px; height: 20px; color: var(--sand); transition: transform .25s var(--ease); }
+.cta-links a:hover svg{ transform: scale(1.15) rotate(-6deg); color: var(--brass-light); }
 .cta-links a span.sub{ display:block; font-family: var(--font-body); font-weight: 400; font-size: .78rem; color: rgba(247,243,238,.55); }
 
 .form-card{ background: var(--cream); padding: clamp(1.6rem, 3vw, 2.4rem); border-radius: var(--radius); }
@@ -651,8 +658,13 @@ h2.section-title{
   display:flex; align-items:center; justify-content:center;
   color: var(--espresso); background: var(--cream);
   transition: transform .25s var(--ease);
+  animation: play-beat 2.4s ease-in-out infinite;
 }
-.video-slot:hover .play{ transform: scale(1.08); }
+.video-slot:hover .play{ transform: scale(1.1); animation-play-state: paused; }
+@keyframes play-beat{
+  0%, 100%{ transform: scale(1); }
+  50%{ transform: scale(1.06); }
+}
 .video-slot .play svg{ width: 26px; height: 26px; margin-left: 3px; }
 .video-slot iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
 .trust-chips{ display:flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.6rem; }
@@ -704,6 +716,11 @@ h2.section-title{
    ========================================================================== */
 [data-reveal]{ opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
 [data-reveal].is-visible{ opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce){
+  .video-slot .play{ animation: none; }
+  .service-card:hover .service-mark{ animation: none; }
+}
 
 /* ==========================================================================
    Responsive
