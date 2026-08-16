@@ -637,7 +637,28 @@ h2.section-title{
 .footer-links{ display:flex; flex-direction: column; gap: .7rem; }
 .footer-links a{ font-size: .88rem; }
 .footer-links a:hover{ color: var(--sand); }
-.footer-bottom{ border-top: 1px solid rgba(247,243,238,.14); padding-top: 1.2rem; display:flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: .78rem; }
+.footer-bottom{ border-top: 1px solid rgba(247,243,238,.14); padding-top: 1.2rem; display:flex; justify-content: space-between; gap: .8rem 1.6rem; flex-wrap: wrap; font-size: .78rem; }
+.footer-legal{ display:flex; flex-wrap: wrap; gap: .5rem 1.2rem; }
+.footer-legal a:hover{ color: var(--sand); }
+
+/* ==========================================================================
+   Legal pages (cookie / licenses / terms / privacy)
+   ========================================================================== */
+.legal-content{ max-width: 74ch; }
+.legal-content h2{
+  font-family: var(--font-display); text-transform: none; letter-spacing: 0;
+  font-weight: 800; font-size: 1.25rem; color: var(--espresso);
+  margin-top: 2.4rem; margin-bottom: .9rem;
+}
+.legal-content h2:first-child{ margin-top: 0; }
+.legal-content p{ color: var(--walnut-2); margin-bottom: 1rem; line-height: 1.7; }
+.legal-content ul, .legal-content ol{ margin: 0 0 1.2rem 1.3rem; color: var(--walnut-2); line-height: 1.7; }
+.legal-content ul{ list-style: disc; }
+.legal-content ol{ list-style: decimal; }
+.legal-content li{ margin-bottom: .5rem; }
+.legal-content a{ color: var(--walnut); text-decoration: underline; text-underline-offset: 2px; }
+.legal-content a:hover{ color: var(--brass-dark); }
+.legal-content strong{ color: var(--espresso); }
 
 /* ==========================================================================
    Trust / problem-solution band (главная, после hero)
