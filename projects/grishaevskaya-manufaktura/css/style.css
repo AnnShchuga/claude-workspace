@@ -3,7 +3,22 @@
    Палитра и типографика — по Design Book v1.0 (июль 2026)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&family=Neucha&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&display=swap');
+
+@font-face{
+  font-family: 'Bewlay BR1 Cyrillic';
+  src: url('../fonts/BewlayBR1Cyrillic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family: '129 Kosmos';
+  src: url('../fonts/Kosmos129.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root{
   --walnut:      #714E44;
@@ -20,8 +35,8 @@
   --white:       #FFFFFF;
 
   --font-display:  'Golos Text', 'PT Sans', system-ui, sans-serif;
-  --font-headline: 'Oswald', 'Golos Text', system-ui, sans-serif;
-  --font-accent:   'Neucha', 'Golos Text', cursive;
+  --font-headline: 'Bewlay BR1 Cyrillic', 'Golos Text', system-ui, sans-serif;
+  --font-accent:   '129 Kosmos', 'Golos Text', cursive;
   --font-body:     'Golos Text', system-ui, -apple-system, sans-serif;
 
   --container: 1200px;
@@ -627,16 +642,22 @@ h2.section-title{
 .trust-problem{ font-family: var(--font-headline); font-weight: 800; font-size: clamp(1.5rem,2.6vw,2.1rem); line-height: 1.28; margin-bottom: 1rem; color: var(--espresso); }
 .trust-solution{ color: var(--walnut-2); font-size: 1.05rem; max-width: 52ch; }
 .video-slot{
-  aspect-ratio: 16/9; position: relative; overflow: hidden;
+  aspect-ratio: 16/9; position: relative; overflow: hidden; background: var(--espresso);
   box-shadow: 0 24px 40px -20px rgba(43,28,23,.4); display:flex; align-items:center; justify-content:center;
+  cursor: pointer; border: 0; padding: 0;
 }
-.video-slot .grain{ position:absolute; inset:0; width:100%; height:100%; opacity:.92; }
-.video-slot::after{ content:''; position:absolute; inset:0; background: rgba(43,28,23,.35); }
+.video-slot .yt-thumb{ position:absolute; inset:0; width:100%; height:100%; object-fit: cover; }
+.video-slot::after{ content:''; position:absolute; inset:0; background: rgba(43,28,23,.32); transition: background .25s; }
+.video-slot:hover::after{ background: rgba(43,28,23,.15); }
 .video-slot .play{
-  position: relative; z-index: 2; display:flex; flex-direction: column; align-items:center; gap:.6rem;
-  color: var(--cream); text-align: center; font-size: .82rem;
+  position: relative; z-index: 2; width: 64px; height: 64px; border-radius: 50%;
+  display:flex; align-items:center; justify-content:center;
+  color: var(--espresso); background: var(--cream);
+  transition: transform .25s var(--ease);
 }
-.video-slot .play svg{ width: 46px; height: 46px; }
+.video-slot:hover .play{ transform: scale(1.08); }
+.video-slot .play svg{ width: 26px; height: 26px; margin-left: 3px; }
+.video-slot iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
 .trust-chips{ display:flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.6rem; }
 .trust-chip{
   font-family: var(--font-display); font-weight: 700; font-size: .8rem;

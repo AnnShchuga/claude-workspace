@@ -237,4 +237,13 @@
     mapLink.target = '_blank';
     mapLink.rel = 'noopener';
   }
+
+  /* ---------- video slot: click-to-load YouTube embed (facade pattern) ---------- */
+  const videoSlot = document.getElementById('videoSlot');
+  if (videoSlot) {
+    videoSlot.addEventListener('click', () => {
+      const id = videoSlot.dataset.ytId;
+      videoSlot.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" title="Видеоотзыв клиента" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    });
+  }
 })();
