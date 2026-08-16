@@ -15,7 +15,7 @@
    Палитра и типографика — по Design Book v1.0 (июль 2026)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&family=Unbounded:wght@500;600;700;800;900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&family=Alegreya:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root{
   --walnut:      #714E44;
@@ -32,8 +32,8 @@
   --white:       #FFFFFF;
 
   --font-display:  'Golos Text', 'PT Sans', system-ui, sans-serif;
-  --font-headline: 'Unbounded', 'Golos Text', system-ui, sans-serif;
-  --font-accent:   'PT Serif', Georgia, 'Times New Roman', serif;
+  --font-headline: 'Alegreya', Georgia, 'Times New Roman', serif;
+  --font-accent:   'Alegreya', Georgia, 'Times New Roman', serif;
   --font-body:     'Golos Text', system-ui, -apple-system, sans-serif;
 
   --container: 1200px;
@@ -94,8 +94,8 @@ section{ position: relative; }
 
 h1, h2, h3, h4{
   font-family: var(--font-headline);
-  font-weight: 700;
-  line-height: 1.14;
+  font-weight: 800;
+  line-height: 1.12;
   letter-spacing: -.01em;
   color: var(--espresso);
 }
@@ -271,7 +271,7 @@ h2.section-title{
     radial-gradient(120% 90% at 82% 12%, rgba(113,78,68,.55), transparent 60%),
     linear-gradient(120deg, #2B1C17 0%, #3A2620 42%, #5C3F37 78%, #714E44 100%);
 }
-.hero-grain svg{ position:absolute; inset:0; width:100%; height:100%; opacity:.5; mix-blend-mode: overlay; }
+.hero-grain svg{ position:absolute; inset:0; width:100%; height:100%; opacity:.4; mix-blend-mode: overlay; }
 .hero-rings{ position:absolute; right:-6%; top:50%; transform: translateY(-50%); width: min(46vw, 620px); opacity:.9; }
 .hero-rings circle{ fill:none; stroke: rgba(247,243,238,.16); }
 
@@ -311,10 +311,10 @@ h2.section-title{
   border-radius: var(--radius);
   position: relative;
   overflow: hidden;
-  background: linear-gradient(155deg, #8a6353 0%, #714E44 35%, #4a322b 100%);
+  background: #3a2820;
   box-shadow: 0 40px 80px -30px rgba(0,0,0,.6);
 }
-.hero-panel .grain-lines{ position:absolute; inset:0; width:100%; height:100%; opacity:.35; }
+.hero-panel .grain-lines{ position:absolute; inset:0; width:100%; height:100%; opacity:.95; }
 .hero-panel .frame{
   position: absolute; inset: 14px;
   border: 1px solid rgba(247,243,238,.35);
@@ -384,12 +384,15 @@ h2.section-title{
 .service-card:nth-child(5){ grid-column: span 3; }
 .service-card:nth-child(6){ grid-column: span 1; }
 .service-card:hover{ background: var(--white); }
+.service-top{ display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1.6rem; }
 .service-card:hover .service-num{ color: var(--sage); }
 .service-num{
   font-family: var(--font-accent); font-style: italic; font-weight: 700; color: var(--sand);
-  font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1; margin-bottom: 1.6rem; display:block;
+  font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1; display:block;
   transition: color .3s;
 }
+.service-mark{ width: 40px; height: 36px; color: var(--walnut); flex: none; opacity: .85; }
+.service-card:hover .service-mark{ color: var(--sage-dark); }
 .service-card h3{ font-size: 1.15rem; margin-bottom: .5rem; }
 .service-card p{ color: var(--walnut-2); font-size: .92rem; max-width: 30ch; }
 
@@ -447,7 +450,7 @@ h2.section-title{
   text-shadow: 0 18px 30px rgba(0,0,0,.4);
 }
 .case-card.is-active .case-mono{ transform: scale(1.15) translateY(-3%); }
-.case-swatch .grain{ position:absolute; inset:0; width:100%; height:100%; opacity:.55; mix-blend-mode: overlay; }
+.case-swatch .grain{ position:absolute; inset:0; width:100%; height:100%; opacity:.92; }
 .case-swatch::after{
   content:''; position:absolute; inset:0;
   background: linear-gradient(200deg, transparent 40%, rgba(43,28,23,.55) 100%);
@@ -717,6 +720,30 @@ h2.section-title{
   <symbol id="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
     <path d="M4 12h16M13.5 6l6 6-6 6"/>
   </symbol>
+  <symbol id="mark-kitchen" viewBox="0 0 40 36" fill="currentColor">
+    <rect x="8" y="4" width="24" height="9" rx="1"/>
+    <rect x="4" y="17" width="32" height="15" rx="1"/>
+  </symbol>
+  <symbol id="mark-wardrobe" viewBox="0 0 40 36" fill="currentColor">
+    <rect x="6" y="4" width="12" height="32" rx="1"/>
+    <rect x="22" y="4" width="12" height="32" rx="1"/>
+  </symbol>
+  <symbol id="mark-hanger" viewBox="0 0 40 36" fill="currentColor">
+    <circle cx="20" cy="7" r="3.2"/>
+    <path d="M20 10 3 30h34Z"/>
+  </symbol>
+  <symbol id="mark-home" viewBox="0 0 40 36" fill="currentColor">
+    <path d="M20 4 36 18H4Z"/>
+    <rect x="8" y="18" width="24" height="14" rx="1"/>
+  </symbol>
+  <symbol id="mark-door" viewBox="0 0 40 36" fill="currentColor">
+    <path fill-rule="evenodd" d="M10 4h20a1 1 0 0 1 1 1v26a1 1 0 0 1-1 1H10a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm14 14a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/>
+  </symbol>
+  <symbol id="mark-drawer" viewBox="0 0 40 36" fill="currentColor">
+    <rect x="6" y="4" width="28" height="7" rx="1"/>
+    <rect x="6" y="14.5" width="28" height="7" rx="1"/>
+    <rect x="6" y="25" width="28" height="7" rx="1"/>
+  </symbol>
   <symbol id="icon-ring" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
     <circle cx="12" cy="12" r="9.3"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.6"/>
   </symbol>
@@ -724,18 +751,61 @@ h2.section-title{
     <path d="M12 2.5 20.5 7v10L12 21.5 3.5 17V7Z"/><path d="M3.5 7 12 11.5l8.5-4.5M12 11.5V21"/>
   </symbol>
   <symbol id="grain-pattern" viewBox="0 0 600 800">
-    <pattern id="woodStripe" width="9" height="800" patternUnits="userSpaceOnUse">
-      <rect width="9" height="800" fill="#4a3527"/>
-      <rect x="0" width="2.2" height="800" fill="#6b4a3a"/>
-      <rect x="3.2" width="1.4" height="800" fill="#7c5c46"/>
-      <rect x="5.4" width="1" height="800" fill="#3a2820"/>
-      <rect x="7.2" width="1.2" height="800" fill="#5c4132"/>
-    </pattern>
-    <filter id="woodWarp" x="-10%" y="-5%" width="120%" height="110%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.006 0.04" numOctaves="3" seed="7" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" xChannelSelector="R" yChannelSelector="G"/>
+    <filter id="woodWobble" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="5" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="18"/>
     </filter>
-    <rect width="600" height="800" fill="url(#woodStripe)" filter="url(#woodWarp)"/>
+    <radialGradient id="woodBase" cx="50%" cy="50%" r="75%">
+      <stop offset="0%" stop-color="#7c5c46"/>
+      <stop offset="55%" stop-color="#5c4132"/>
+      <stop offset="100%" stop-color="#3a2820"/>
+    </radialGradient>
+    <rect width="600" height="800" fill="url(#woodBase)"/>
+    <g filter="url(#woodWobble)">
+      <line x1="300" y1="400" x2="783" y2="529" stroke="#2B1C17" stroke-width="1.4" opacity="0.5"/>
+    <line x1="300" y1="400" x2="256" y2="898" stroke="#2B1C17" stroke-width="1.4" opacity="0.5"/>
+    <line x1="300" y1="400" x2="-192" y2="487" stroke="#2B1C17" stroke-width="1.4" opacity="0.5"/>
+    <line x1="300" y1="400" x2="-133" y2="150" stroke="#2B1C17" stroke-width="1.4" opacity="0.5"/>
+    <line x1="300" y1="400" x2="213" y2="-92" stroke="#2B1C17" stroke-width="1.4" opacity="0.5"/>
+    <line x1="300" y1="400" x2="733" y2="150" stroke="#2B1C17" stroke-width="1.4" opacity="0.5"/>
+      <circle cx="300" cy="400" r="14.0" fill="none" stroke="#8a6353" stroke-width="3.4"/>
+    <circle cx="300" cy="400" r="28.6" fill="none" stroke="#3A2620" stroke-width="4.4"/>
+    <circle cx="300" cy="400" r="44.1" fill="none" stroke="#8a6353" stroke-width="8.8"/>
+    <circle cx="300" cy="400" r="61.9" fill="none" stroke="#714E44" stroke-width="6.1"/>
+    <circle cx="300" cy="400" r="71.3" fill="none" stroke="#3A2620" stroke-width="4.5"/>
+    <circle cx="300" cy="400" r="85.4" fill="none" stroke="#714E44" stroke-width="4.2"/>
+    <circle cx="300" cy="400" r="99.8" fill="none" stroke="#714E44" stroke-width="6.1"/>
+    <circle cx="300" cy="400" r="113.8" fill="none" stroke="#4A322B" stroke-width="9.4"/>
+    <circle cx="300" cy="400" r="126.3" fill="none" stroke="#3A2620" stroke-width="8.4"/>
+    <circle cx="300" cy="400" r="141.4" fill="none" stroke="#3A2620" stroke-width="4.3"/>
+    <circle cx="300" cy="400" r="157.1" fill="none" stroke="#2B1C17" stroke-width="3.3"/>
+    <circle cx="300" cy="400" r="164.5" fill="none" stroke="#4A322B" stroke-width="7.6"/>
+    <circle cx="300" cy="400" r="184.0" fill="none" stroke="#8a6353" stroke-width="6.4"/>
+    <circle cx="300" cy="400" r="194.7" fill="none" stroke="#5C3F37" stroke-width="3.2"/>
+    <circle cx="300" cy="400" r="204.2" fill="none" stroke="#8a6353" stroke-width="7.8"/>
+    <circle cx="300" cy="400" r="224.4" fill="none" stroke="#714E44" stroke-width="4.1"/>
+    <circle cx="300" cy="400" r="232.3" fill="none" stroke="#8a6353" stroke-width="4.4"/>
+    <circle cx="300" cy="400" r="242.9" fill="none" stroke="#2B1C17" stroke-width="9.8"/>
+    <circle cx="300" cy="400" r="265.2" fill="none" stroke="#5C3F37" stroke-width="4.9"/>
+    <circle cx="300" cy="400" r="280.1" fill="none" stroke="#4A322B" stroke-width="3.9"/>
+    <circle cx="300" cy="400" r="290.9" fill="none" stroke="#8a6353" stroke-width="4.8"/>
+    <circle cx="300" cy="400" r="309.0" fill="none" stroke="#8a6353" stroke-width="3.1"/>
+    <circle cx="300" cy="400" r="322.1" fill="none" stroke="#714E44" stroke-width="8.7"/>
+    <circle cx="300" cy="400" r="335.6" fill="none" stroke="#5C3F37" stroke-width="4.8"/>
+    <circle cx="300" cy="400" r="353.6" fill="none" stroke="#8a6353" stroke-width="7.2"/>
+    <circle cx="300" cy="400" r="371.3" fill="none" stroke="#2B1C17" stroke-width="4.4"/>
+    <circle cx="300" cy="400" r="379.1" fill="none" stroke="#4A322B" stroke-width="5.9"/>
+    <circle cx="300" cy="400" r="388.7" fill="none" stroke="#714E44" stroke-width="9.9"/>
+    <circle cx="300" cy="400" r="405.0" fill="none" stroke="#8a6353" stroke-width="6.7"/>
+    <circle cx="300" cy="400" r="424.5" fill="none" stroke="#8a6353" stroke-width="6.4"/>
+    <circle cx="300" cy="400" r="436.8" fill="none" stroke="#3A2620" stroke-width="8.8"/>
+    <circle cx="300" cy="400" r="454.5" fill="none" stroke="#8a6353" stroke-width="7.5"/>
+    <circle cx="300" cy="400" r="474.9" fill="none" stroke="#5C3F37" stroke-width="5.6"/>
+    <circle cx="300" cy="400" r="494.5" fill="none" stroke="#3A2620" stroke-width="6.8"/>
+    <circle cx="300" cy="400" r="505.3" fill="none" stroke="#2B1C17" stroke-width="9.8"/>
+    <circle cx="300" cy="400" r="519.7" fill="none" stroke="#3A2620" stroke-width="9.2"/>
+      <circle cx="300" cy="400" r="7" fill="#2B1C17"/>
+    </g>
   </symbol>
 </defs>
 </svg>
@@ -811,7 +881,6 @@ h2.section-title{
       </div>
       <div class="hero-panel" data-reveal>
         <svg class="grain-lines" aria-hidden="true"><use href="#grain-pattern" preserveAspectRatio="xMidYMid slice"/></svg>
-        <div class="monogram"><svg viewBox="0 0 24 24"><use href="#icon-ring"/></svg></div>
         <div class="frame"></div>
         <span class="tag"><svg><use href="#icon-cube"/></svg>Кухни · Шкафы · Полный цикл</span>
       </div>
@@ -852,32 +921,32 @@ h2.section-title{
 
       <div class="services-grid" data-reveal>
         <article class="service-card">
-          <span class="service-num">01</span>
+          <div class="service-top"><span class="service-num">01</span><svg class="service-mark"><use href="#mark-kitchen"/></svg></div>
           <h3>Кухни на заказ</h3>
           <p>Дизайн-проект под планировку, встроенная техника, любые фасады и материалы.</p>
         </article>
         <article class="service-card">
-          <span class="service-num">02</span>
+          <div class="service-top"><span class="service-num">02</span><svg class="service-mark"><use href="#mark-wardrobe"/></svg></div>
           <h3>Шкафы и шкафы-купе</h3>
           <p>Системы хранения под нестандартные ниши и высокие потолки.</p>
         </article>
         <article class="service-card">
-          <span class="service-num">03</span>
+          <div class="service-top"><span class="service-num">03</span><svg class="service-mark"><use href="#mark-hanger"/></svg></div>
           <h3>Гардеробные</h3>
           <p>Продуманное наполнение: от вешал до выдвижных систем хранения.</p>
         </article>
         <article class="service-card">
-          <span class="service-num">04</span>
+          <div class="service-top"><span class="service-num">04</span><svg class="service-mark"><use href="#mark-home"/></svg></div>
           <h3>Мебель для всей квартиры</h3>
           <p>Полная меблировка новостройки или дома — единым проектом и подрядчиком.</p>
         </article>
         <article class="service-card">
-          <span class="service-num">05</span>
+          <div class="service-top"><span class="service-num">05</span><svg class="service-mark"><use href="#mark-door"/></svg></div>
           <h3>Прихожие</h3>
           <p>Компактные и вместительные решения для входной группы.</p>
         </article>
         <article class="service-card">
-          <span class="service-num">06</span>
+          <div class="service-top"><span class="service-num">06</span><svg class="service-mark"><use href="#mark-drawer"/></svg></div>
           <h3>Тумбы, комоды, столы</h3>
           <p>Штучная мебель под интерьер — в цвет и материал основного проекта.</p>
         </article>
