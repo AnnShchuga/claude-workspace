@@ -94,11 +94,14 @@
       note: 'Скруглённый корпус вместо острого угла — сложнее в производстве, но существенно экономит проходное пространство.' }
   ];
 
-  function caseCardHTML(item) {
+  function woodBg(i) {
+    return `assets/wood/wood-${(i % 4) + 1}.jpg`;
+  }
+
+  function caseCardHTML(item, i) {
     return `
-      <div class="case-swatch" style="background:linear-gradient(155deg,#8a6353,#714E44 45%,#4a322b)">
+      <div class="case-swatch" style="background-image:url('${woodBg(i)}')">
         <span class="case-tag">${item.tag}</span>
-        <svg class="grain" aria-hidden="true"><use href="#grain-pattern" preserveAspectRatio="xMidYMid slice"/></svg>
         <div class="case-mono">${item.mono}</div>
       </div>
       <div class="case-meta">
@@ -129,7 +132,7 @@
       card.type = 'button';
       card.className = 'case-card' + (i === 0 ? ' is-active' : '');
       card.setAttribute('aria-label', item.title);
-      card.innerHTML = caseCardHTML(item);
+      card.innerHTML = caseCardHTML(item, i);
       card.addEventListener('click', () => {
         track.querySelectorAll('.case-card').forEach(c => c.classList.remove('is-active'));
         card.classList.add('is-active');
@@ -154,7 +157,7 @@
 
     function render() {
       const set = currentSet();
-      grid.innerHTML = set.slice(0, shown).map(item => `<a class="grid-card" href="#cta">${caseCardHTML(item)}</a>`).join('');
+      grid.innerHTML = set.slice(0, shown).map((item, i) => `<a class="grid-card" href="#cta">${caseCardHTML(item, i)}</a>`).join('');
       const btn = document.getElementById('loadMoreBtn');
       if (btn) btn.hidden = shown >= set.length;
     }
@@ -178,10 +181,9 @@
   document.querySelectorAll('[data-media-grid]').forEach(container => {
     let items;
     try { items = JSON.parse(container.getAttribute('data-media-grid')); } catch (e) { items = []; }
-    container.innerHTML = items.map(item => `
+    container.innerHTML = items.map((item, i) => `
       <div class="grid-card">
-        <div class="case-swatch" style="background:linear-gradient(155deg,#8a6353,#714E44 45%,#4a322b)">
-          <svg class="grain" aria-hidden="true"><use href="#grain-pattern" preserveAspectRatio="xMidYMid slice"/></svg>
+        <div class="case-swatch" style="background-image:url('${woodBg(i)}')">
           <div class="case-mono">${item.mono}</div>
         </div>
         <div class="case-meta">
