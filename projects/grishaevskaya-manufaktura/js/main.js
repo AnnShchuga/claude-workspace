@@ -1,6 +1,48 @@
 (() => {
   'use strict';
 
+  /* ---------- hero: interactive kitchen (doors/drawers open on hover) ---------- */
+  const heroImg = document.getElementById('heroKitchenImg');
+  if (heroImg) {
+    const HERO_POS_X = 0.20, HERO_POS_Y = 0.5; // must match .hero-photo img { object-position }
+
+    const layoutHeroHotspots = () => {
+      const container = heroImg.parentElement;
+      const cw = container.clientWidth, ch = container.clientHeight;
+      const iw = heroImg.naturalWidth, ih = heroImg.naturalHeight;
+      if (!iw || !ih || !cw || !ch) return;
+
+      const containerRatio = cw / ch, imgRatio = iw / ih;
+      let renderW, renderH;
+      if (imgRatio > containerRatio) { renderH = ch; renderW = ch * imgRatio; }
+      else { renderW = cw; renderH = cw / imgRatio; }
+      const offsetX = (cw - renderW) * HERO_POS_X;
+      const offsetY = (ch - renderH) * HERO_POS_Y;
+      const scale = renderW / iw;
+      const src = heroImg.currentSrc || heroImg.src;
+
+      document.querySelectorAll('.hero-hotspot').forEach(el => {
+        const x = parseFloat(el.dataset.x), y = parseFloat(el.dataset.y);
+        const w = parseFloat(el.dataset.w), h = parseFloat(el.dataset.h);
+        const left = offsetX + x * scale, top = offsetY + y * scale;
+        el.style.left = left + 'px';
+        el.style.top = top + 'px';
+        el.style.width = (w * scale) + 'px';
+        el.style.height = (h * scale) + 'px';
+        const front = el.querySelector('.front');
+        if (front) {
+          front.style.backgroundImage = `url('${src}')`;
+          front.style.backgroundSize = renderW + 'px ' + renderH + 'px';
+          front.style.backgroundPosition = (-left) + 'px ' + (-top) + 'px';
+        }
+      });
+    };
+
+    if (heroImg.complete && heroImg.naturalWidth) layoutHeroHotspots();
+    heroImg.addEventListener('load', layoutHeroHotspots);
+    window.addEventListener('resize', layoutHeroHotspots);
+  }
+
   /* ---------- header scroll state ---------- */
   const header = document.getElementById('siteHeader');
   if (header) {

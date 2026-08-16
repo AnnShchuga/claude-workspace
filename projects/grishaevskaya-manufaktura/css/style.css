@@ -287,20 +287,53 @@ h2.section-title{
   overflow: hidden;
   padding-top: 5rem;
 }
-.hero-grain{
+
+.hero-photo{ position: absolute; inset: 0; z-index: 0; }
+.hero-photo img{
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 20% 50%;
+}
+.hero-scrim{
   position: absolute; inset: 0;
   background:
-    radial-gradient(120% 90% at 82% 12%, rgba(113,78,68,.5), transparent 60%),
-    linear-gradient(120deg, rgba(43,28,23,.82) 0%, rgba(58,38,32,.8) 42%, rgba(92,63,55,.72) 78%, rgba(113,78,68,.62) 100%),
-    url('../assets/wood/wood-wash.jpg');
-  background-size: auto, auto, cover;
-  background-position: center, center, center;
+    linear-gradient(100deg, rgba(18,12,9,.86) 0%, rgba(18,12,9,.6) 30%, rgba(18,12,9,.18) 52%, rgba(18,12,9,0) 68%),
+    linear-gradient(0deg, rgba(18,12,9,.45) 0%, transparent 30%);
 }
-.hero-rings{ position:absolute; right:-6%; top:50%; transform: translateY(-50%); width: min(46vw, 620px); opacity:.9; }
-.hero-rings circle{ fill:none; stroke: rgba(217,168,87,.16); }
 
-.hero .wrap{ position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,.85fr); gap: clamp(2rem,5vw,4rem); align-items: end; padding-block: clamp(2rem,6vw,3rem); }
+.hero-hotspots{ position: absolute; inset: 0; z-index: 1; perspective: 1400px; }
+.hero-hotspot{
+  position: absolute; padding: 0; border: 0; background: none; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.hero-hotspot .front, .hero-hotspot .interior{ position: absolute; inset: 0; }
+.hero-hotspot .interior{
+  z-index: 1;
+  background: linear-gradient(160deg, #221712, #100b09);
+  box-shadow: inset 0 0 30px rgba(0,0,0,.75);
+}
+.hero-hotspot .interior::after{
+  content: ''; position: absolute; left: 8%; right: 8%; top: 40%; height: 1.5px;
+  background: rgba(217,168,87,.14);
+}
+.hero-hotspot .front{
+  z-index: 2; background-repeat: no-repeat;
+  transition: transform .55s cubic-bezier(.22,.9,.3,1), box-shadow .55s;
+}
+.hero-hotspot.door.hinge-left .front{ transform-origin: left center; }
+.hero-hotspot.door.hinge-right .front{ transform-origin: right center; }
+.hero-hotspot.door.hinge-left:hover .front{ transform: rotateY(-58deg); box-shadow: 14px 20px 34px rgba(0,0,0,.55); }
+.hero-hotspot.door.hinge-right:hover .front{ transform: rotateY(58deg); box-shadow: -14px 20px 34px rgba(0,0,0,.55); }
+.hero-hotspot.drawer .front{ transform-origin: center; }
+.hero-hotspot.drawer:hover .front{ transform: perspective(700px) translateZ(38px) translateY(8px); box-shadow: 0 20px 26px rgba(0,0,0,.5); }
 
+@media (prefers-reduced-motion: reduce){
+  .hero-hotspot .front{ transition: none; }
+}
+
+.hero .wrap{ position: relative; z-index: 2; padding-block: clamp(2rem,6vw,3rem); pointer-events: none; }
+.hero-copy .btn, .hero-copy a{ pointer-events: auto; }
+
+.hero-copy{ max-width: 30rem; }
 .hero-copy .eyebrow{ color: var(--sand); margin-bottom: 1.4rem; }
 .hero-copy h1{
   font-size: clamp(2.1rem, 4.6vw, 3.6rem);
@@ -321,34 +354,12 @@ h2.section-title{
   color: rgba(247,243,238,.82);
 }
 .hero-cta{ display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.4rem; }
-
-.hero-panel{
-  aspect-ratio: 3/4;
-  border-radius: var(--radius);
-  position: relative;
-  overflow: hidden;
-  background: #3a2820 url('../assets/photos/hero-kitchen.jpg') 62% center/cover;
-  box-shadow: 0 40px 80px -30px rgba(0,0,0,.6);
+.hero-cta .btn-ghost{ background: rgba(18,12,9,.35); backdrop-filter: blur(6px); }
+.hero-cta .btn-ghost:hover{ background: var(--cream); }
+.hero-hint{
+  margin-top: 1.4rem; font-size: .82rem; letter-spacing: .04em;
+  color: rgba(247,243,238,.55);
 }
-.hero-panel .frame{
-  position: absolute; inset: 14px;
-  border: 1px solid rgba(247,243,238,.35);
-}
-.hero-panel .tag{
-  position: absolute; left: 24px; bottom: 24px;
-  font-family: var(--font-display); font-weight: 700; font-size: .78rem;
-  letter-spacing: .08em; text-transform: uppercase;
-  color: var(--cream);
-  background: rgba(43,28,23,.55);
-  padding: .5rem .8rem;
-  backdrop-filter: blur(4px);
-  display:flex; align-items:center; gap:.5rem;
-}
-.hero-panel .tag svg{ width:16px; height:16px; }
-.hero-panel .monogram{
-  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-}
-.hero-panel .monogram svg{ width: 46%; height: auto; color: rgba(247,243,238,.14); }
 
 /* ==========================================================================
    Marquee stat strip
@@ -757,8 +768,8 @@ h2.section-title{
   .header-actions .btn-primary{ display: none; }
   .burger{ display: block; }
 
-  .hero .wrap{ grid-template-columns: 1fr; }
-  .hero-panel{ aspect-ratio: 16/10; }
+  .hero-hotspots{ display: none; }
+  .hero-hint{ display: none; }
   .about-grid{ grid-template-columns: 1fr; }
   .about-portrait{ aspect-ratio: 16/10; }
   .cta-grid{ grid-template-columns: 1fr; }
