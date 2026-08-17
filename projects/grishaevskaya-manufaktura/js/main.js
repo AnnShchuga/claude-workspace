@@ -5,6 +5,10 @@
   const heroImg = document.getElementById('heroKitchenImg');
   if (heroImg) {
     const HERO_POS_X = 0.20, HERO_POS_Y = 0.5; // must match .hero-photo img { object-position }
+    const heroCopy = document.querySelector('.hero-copy');
+
+    const rectsOverlap = (a, b) =>
+      a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
 
     const layoutHeroHotspots = () => {
       const container = heroImg.parentElement;
@@ -21,19 +25,36 @@
       const scale = renderW / iw;
       const src = heroImg.currentSrc || heroImg.src;
 
+      const containerRect = container.getBoundingClientRect();
+      const copyRect = heroCopy ? heroCopy.getBoundingClientRect() : null;
+      const copyRectLocal = copyRect ? {
+        left: copyRect.left - containerRect.left, right: copyRect.right - containerRect.left,
+        top: copyRect.top - containerRect.top, bottom: copyRect.bottom - containerRect.top
+      } : null;
+
       document.querySelectorAll('.hero-hotspot').forEach(el => {
         const x = parseFloat(el.dataset.x), y = parseFloat(el.dataset.y);
         const w = parseFloat(el.dataset.w), h = parseFloat(el.dataset.h);
         const left = offsetX + x * scale, top = offsetY + y * scale;
+        const width = w * scale, height = h * scale;
+
+        if (copyRectLocal && rectsOverlap(
+          { left, right: left + width, top, bottom: top + height }, copyRectLocal
+        )) {
+          el.style.display = 'none';
+          return;
+        }
+        el.style.display = '';
+
         el.style.left = left + 'px';
         el.style.top = top + 'px';
-        el.style.width = (w * scale) + 'px';
-        el.style.height = (h * scale) + 'px';
+        el.style.width = width + 'px';
+        el.style.height = height + 'px';
         const front = el.querySelector('.front');
         if (front) {
           front.style.backgroundImage = `url('${src}')`;
           front.style.backgroundSize = renderW + 'px ' + renderH + 'px';
-          front.style.backgroundPosition = (-left) + 'px ' + (-top) + 'px';
+          front.style.backgroundPosition = (offsetX - left) + 'px ' + (offsetY - top) + 'px';
         }
       });
     };
