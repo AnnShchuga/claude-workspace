@@ -330,6 +330,12 @@ h2.section-title{
   .hero-hotspot .front{ transition: none; }
 }
 
+/* Doors-open interaction only makes sense with a real mouse hovering —
+   on touch devices (no fine pointer / no hover) show a plain static photo. */
+@media not all and (hover: hover) and (pointer: fine){
+  .hero-hotspots, .hero-hint{ display: none; }
+}
+
 .hero .wrap{ position: relative; z-index: 2; padding-block: clamp(2rem,6vw,3rem); pointer-events: none; }
 .hero-copy .btn, .hero-copy a{ pointer-events: auto; }
 
@@ -768,8 +774,6 @@ h2.section-title{
   .header-actions .btn-primary{ display: none; }
   .burger{ display: block; }
 
-  .hero-hotspots{ display: none; }
-  .hero-hint{ display: none; }
   .about-grid{ grid-template-columns: 1fr; }
   .about-portrait{ aspect-ratio: 16/10; }
   .cta-grid{ grid-template-columns: 1fr; }
