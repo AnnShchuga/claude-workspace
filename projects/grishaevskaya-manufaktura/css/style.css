@@ -511,17 +511,17 @@ h2.section-title{
 /* ==========================================================================
    Advantages (dark band)
    ========================================================================== */
-.adv-list{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border-top: 1px solid rgba(247,243,238,.14); }
+.adv-list{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border-top: 1px solid rgba(42,42,42,.1); }
 .adv-item{
   padding: 1.9rem clamp(0rem,2vw,1.2rem);
-  border-bottom: 1px solid rgba(247,243,238,.14);
+  border-bottom: 1px solid rgba(42,42,42,.1);
   display: flex; gap: 1.4rem; align-items: flex-start;
 }
-.adv-item:nth-child(odd){ border-right: 1px solid rgba(247,243,238,.14); padding-right: 1.6rem; }
+.adv-item:nth-child(odd){ border-right: 1px solid rgba(42,42,42,.1); padding-right: 1.6rem; }
 .adv-item:nth-child(even){ padding-left: 1.6rem; }
-.adv-num{ font-family: var(--font-accent); font-style: normal; font-size: 1.6rem; color: var(--brass-light); flex: none; width: 2ch; }
-.adv-item h4{ color: var(--cream); font-size: 1.08rem; margin-bottom: .35rem; }
-.adv-item p{ color: rgba(247,243,238,.68); font-size: .92rem; max-width: 42ch; }
+.adv-num{ font-family: var(--font-accent); font-style: normal; font-size: 1.6rem; color: var(--brass); flex: none; width: 2ch; }
+.adv-item h4{ font-size: 1.08rem; margin-bottom: .35rem; }
+.adv-item p{ color: var(--walnut-2); font-size: .92rem; max-width: 42ch; }
 
 /* ==========================================================================
    Process timeline
