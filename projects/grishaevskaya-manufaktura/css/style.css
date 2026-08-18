@@ -279,25 +279,26 @@ h2.section-title{
    ========================================================================== */
 .hero{
   position: relative;
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
   background: var(--espresso);
   color: var(--cream);
-  overflow: hidden;
-  padding-top: 5rem;
+  padding-block: clamp(6.5rem, 11vw, 8.5rem) clamp(3rem, 6vw, 4rem);
 }
 
-.hero-photo{ position: absolute; inset: 0; z-index: 0; }
+.hero .wrap{ position: relative; z-index: 2; }
+.hero-copy{ max-width: 46rem; margin-bottom: clamp(2rem, 4vw, 2.8rem); }
+
+.hero-photo{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1900 / 1059;
+  overflow: hidden;
+  border-radius: var(--radius);
+  box-shadow: 0 30px 70px -25px rgba(0,0,0,.6);
+  background: #3a2820;
+}
 .hero-photo img{
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: 20% 50%;
-}
-.hero-scrim{
-  position: absolute; inset: 0;
-  background:
-    linear-gradient(100deg, rgba(18,12,9,.86) 0%, rgba(18,12,9,.6) 30%, rgba(18,12,9,.18) 52%, rgba(18,12,9,0) 68%),
-    linear-gradient(0deg, rgba(18,12,9,.45) 0%, transparent 30%);
+  object-fit: cover;
 }
 
 .hero-hotspots{ position: absolute; inset: 0; z-index: 1; perspective: 1400px; }
@@ -324,7 +325,9 @@ h2.section-title{
 .hero-hotspot.door.hinge-left:hover .front{ transform: rotateY(-58deg); box-shadow: 14px 20px 34px rgba(0,0,0,.55); }
 .hero-hotspot.door.hinge-right:hover .front{ transform: rotateY(58deg); box-shadow: -14px 20px 34px rgba(0,0,0,.55); }
 .hero-hotspot.drawer .front{ transform-origin: center; }
-.hero-hotspot.drawer:hover .front{ transform: perspective(700px) translateZ(38px) translateY(8px); box-shadow: 0 20px 26px rgba(0,0,0,.5); }
+.hero-hotspot.drawer:hover .front{ transform: perspective(700px) translateZ(56px) translateY(14px); box-shadow: 0 22px 30px rgba(0,0,0,.55); }
+.hero-hotspot.oven .front{ transform-origin: center bottom; }
+.hero-hotspot.oven:hover .front{ transform: perspective(900px) rotateX(48deg); box-shadow: 0 22px 30px rgba(0,0,0,.5); }
 
 @media (prefers-reduced-motion: reduce){
   .hero-hotspot .front{ transition: none; }
@@ -336,10 +339,6 @@ h2.section-title{
   .hero-hotspots, .hero-hint{ display: none; }
 }
 
-.hero .wrap{ position: relative; z-index: 2; padding-block: clamp(2rem,6vw,3rem); pointer-events: none; }
-.hero-copy .btn, .hero-copy a{ pointer-events: auto; }
-
-.hero-copy{ max-width: 30rem; }
 .hero-copy .eyebrow{ color: var(--sand); margin-bottom: 1.4rem; }
 .hero-copy h1{
   font-size: clamp(2.1rem, 4.6vw, 3.6rem);
@@ -359,11 +358,9 @@ h2.section-title{
   font-size: clamp(1.02rem, 1.4vw, 1.18rem);
   color: rgba(247,243,238,.82);
 }
-.hero-cta{ display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.4rem; }
-.hero-cta .btn-ghost{ background: rgba(18,12,9,.35); backdrop-filter: blur(6px); }
-.hero-cta .btn-ghost:hover{ background: var(--cream); }
+.hero-cta{ display: flex; flex-wrap: wrap; gap: 1rem; margin-top: clamp(1.8rem, 3vw, 2.4rem); }
 .hero-hint{
-  margin-top: 1.4rem; font-size: .82rem; letter-spacing: .04em;
+  margin-top: 1.2rem; font-size: .82rem; letter-spacing: .04em;
   color: rgba(247,243,238,.55);
 }
 
