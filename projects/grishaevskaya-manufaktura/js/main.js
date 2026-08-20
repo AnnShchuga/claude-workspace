@@ -56,6 +56,13 @@
           front.style.backgroundSize = renderW + 'px ' + renderH + 'px';
           front.style.backgroundPosition = (offsetX - left) + 'px ' + (offsetY - top) + 'px';
         }
+        const interior = el.querySelector('.interior');
+        const interiorSrc = el.dataset.interior;
+        if (interior && interiorSrc) {
+          interior.style.backgroundImage = `url('${interiorSrc}')`;
+          interior.style.backgroundSize = renderW + 'px ' + renderH + 'px';
+          interior.style.backgroundPosition = (offsetX - left) + 'px ' + (offsetY - top) + 'px';
+        }
       });
     };
 

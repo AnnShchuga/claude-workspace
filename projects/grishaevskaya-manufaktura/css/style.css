@@ -309,12 +309,9 @@ h2.section-title{
 .hero-hotspot .front, .hero-hotspot .interior{ position: absolute; inset: 0; }
 .hero-hotspot .interior{
   z-index: 1;
-  background: linear-gradient(160deg, #221712, #100b09);
-  box-shadow: inset 0 0 30px rgba(0,0,0,.75);
-}
-.hero-hotspot .interior::after{
-  content: ''; position: absolute; left: 8%; right: 8%; top: 40%; height: 1.5px;
-  background: rgba(217,168,87,.14);
+  background-color: #221712;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 30px rgba(0,0,0,.45);
 }
 .hero-hotspot .front{
   z-index: 2; background-repeat: no-repeat;
@@ -576,8 +573,7 @@ h2.section-title{
   position: relative;
   overflow: hidden;
 }
-.about-portrait .monogram-big{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
-.about-portrait .monogram-big span{ font-family: var(--font-accent); font-style: normal; font-size: clamp(6rem,14vw,9rem); color: rgba(113,78,68,.28); }
+.about-portrait img{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .about-portrait .cred{
   position:absolute; left:18px; bottom:18px; right: 18px;
   font-size:.8rem; color: var(--walnut-2); background: rgba(255,255,255,.6); backdrop-filter: blur(3px);
