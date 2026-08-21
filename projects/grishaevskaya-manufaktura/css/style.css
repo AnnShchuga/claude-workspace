@@ -196,14 +196,20 @@ h2.section-title{
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 100;
-  padding-block: 1.1rem;
-  transition: background .35s var(--ease), padding .35s var(--ease), box-shadow .35s;
-}
-.site-header.is-scrolled{
+  padding-block: .7rem;
   background: rgba(247,243,238,.92);
   backdrop-filter: blur(10px);
-  padding-block: .7rem;
   box-shadow: 0 1px 0 rgba(42,42,42,.08);
+  transition: background .35s var(--ease), padding .35s var(--ease), box-shadow .35s;
+}
+/* .on-hero: only the homepage header starts transparent, over the dark hero band;
+   every other page opens straight into a light section, so its header keeps the
+   light-background / dark-text treatment from the first frame, not just on scroll. */
+.site-header.on-hero:not(.is-scrolled){
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+  padding-block: 1.1rem;
 }
 .site-header .wrap{
   display: flex;
@@ -212,39 +218,28 @@ h2.section-title{
   gap: 1.5rem;
 }
 
-.logo{ display: flex; flex-direction: column; line-height: 1; gap: .18rem; }
-.logo .l1{
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: .62rem;
-  letter-spacing: .3em;
-  color: var(--sand);
-  display: flex; align-items: center; gap: .5rem;
+.logo{ display: flex; align-items: center; }
+.logo-mark{
+  display: block;
+  width: 42px; height: 42px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(43,28,23,.25);
 }
-.logo .l1::before, .logo .l1::after{ content:''; height: 1px; width: 14px; background: currentColor; }
-.site-header.is-scrolled .logo .l1{ color: var(--walnut); }
-.logo .l2{
-  font-family: var(--font-headline);
-  font-weight: 700;
-  font-size: .92rem;
-  letter-spacing: .01em;
-  color: var(--cream);
-}
-.site-header.is-scrolled .logo .l2{ color: var(--espresso); }
 
 .main-nav{ display: flex; gap: clamp(1rem, 2vw, 2rem); }
 .main-nav a{
   font-size: .92rem;
   font-weight: 600;
-  color: var(--sand);
+  color: var(--walnut-2);
   padding-block: .3rem;
   border-bottom: 1.5px solid transparent;
   transition: border-color .2s, color .2s;
 }
-.site-header.is-scrolled .main-nav a{ color: var(--walnut-2); }
-.main-nav a:hover{ border-color: var(--sage); }
-.main-nav a.current{ border-color: var(--sand); font-weight: 700; }
-.site-header.is-scrolled .main-nav a.current{ border-color: var(--walnut); color: var(--espresso); }
+.site-header.on-hero:not(.is-scrolled) .main-nav a{ color: var(--sand); }
+.main-nav a:hover{ border-color: var(--brass); }
+.main-nav a.current{ border-color: var(--walnut); font-weight: 700; color: var(--espresso); }
+.site-header.on-hero:not(.is-scrolled) .main-nav a.current{ border-color: var(--sand); color: var(--cream); }
 .mobile-nav a.current{ color: var(--sand-2); }
 
 .header-actions{ display: flex; align-items: center; gap: 1.1rem; }
@@ -252,18 +247,18 @@ h2.section-title{
   font-family: var(--font-display);
   font-weight: 700;
   font-size: .95rem;
-  color: var(--cream);
+  color: var(--espresso);
   display: none;
 }
-.site-header.is-scrolled .header-phone{ color: var(--espresso); }
+.site-header.on-hero:not(.is-scrolled) .header-phone{ color: var(--cream); }
 
 .burger{
   display: none;
   width: 34px; height: 34px;
   position: relative;
-  color: var(--cream);
+  color: var(--espresso);
 }
-.site-header.is-scrolled .burger{ color: var(--espresso); }
+.site-header.on-hero:not(.is-scrolled) .burger{ color: var(--cream); }
 .burger span, .burger span::before, .burger span::after{
   content: ''; position: absolute; left: 6px; right: 6px; height: 2px; background: currentColor; transition: transform .25s, opacity .25s;
 }
@@ -463,17 +458,16 @@ h2.section-title{
   background-position: center;
 }
 .case-card.is-active .case-swatch{ box-shadow: 0 42px 60px -20px rgba(43,28,23,.55); transform: scale(1.04); }
-.case-swatch .case-mono{
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
+.case-swatch.is-placeholder{ background-color: var(--walnut-dark); }
+.case-placeholder-mark{
+  position: absolute; top: 50%; left: 50%; z-index: 1;
+  transform: translate(-50%,-50%);
+  width: 26%; min-width: 44px; max-width: 84px;
+  aspect-ratio: 1; border-radius: 20%;
+  box-shadow: 0 10px 26px rgba(0,0,0,.4);
   transition: transform .6s var(--ease);
-  font-family: var(--font-accent); font-style: normal; font-weight: 700;
-  font-size: clamp(3rem, 9vw, 4.6rem);
-  letter-spacing: -.02em;
-  color: rgba(247,243,238,.85);
-  text-shadow: 0 18px 30px rgba(0,0,0,.4);
 }
-.case-card.is-active .case-mono{ transform: scale(1.15) translateY(-3%); }
+.case-card.is-active .case-placeholder-mark{ transform: translate(-50%,-50%) scale(1.15); }
 .case-swatch::after{
   content:''; position:absolute; inset:0;
   background: linear-gradient(200deg, transparent 40%, rgba(43,28,23,.55) 100%);
@@ -641,7 +635,6 @@ h2.section-title{
    ========================================================================== */
 .site-footer{ background: var(--espresso); color: rgba(247,243,238,.6); padding-block: clamp(2.5rem,5vw,4rem) 1.6rem; }
 .footer-grid{ display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2.4rem; margin-bottom: 2.4rem; }
-.footer-grid .logo .l2{ color: var(--cream); }
 .footer-brand p{ margin-top: 1rem; font-size: .86rem; line-height: 1.6; max-width: 32ch; }
 .footer-grid h5{ font-family: var(--font-display); font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--sand); margin-bottom: 1rem; }
 .footer-links{ display:flex; flex-direction: column; gap: .7rem; }
@@ -766,6 +759,7 @@ h2.section-title{
   .header-phone{ display: none !important; }
   .header-actions .btn-primary{ display: none; }
   .burger{ display: block; }
+  .logo-mark{ width: 34px; height: 34px; border-radius: 6px; }
 
   .about-grid{ grid-template-columns: 1fr; }
   .about-portrait{ aspect-ratio: 16/10; }
@@ -814,3 +808,53 @@ h2.section-title{
 .mobile-nav a{ font-family: var(--font-display); font-weight: 800; font-size: 1.8rem; color: var(--cream); }
 .mobile-nav .mn-actions{ margin-top: 1rem; display:flex; flex-direction: column; gap: 1rem; align-items: flex-start; }
 
+
+/* ==========================================================================
+   Floating widgets: scroll-to-top + quick callback request
+   ========================================================================== */
+.floating-widgets{
+  position: fixed; right: clamp(1rem, 3vw, 1.8rem); bottom: clamp(1rem, 3vw, 1.8rem);
+  z-index: 80; display: flex; flex-direction: column; align-items: flex-end; gap: .7rem;
+}
+.fab{
+  display: flex; align-items: center; gap: .55rem;
+  background: var(--walnut); color: var(--cream);
+  border: none; border-radius: 999px; cursor: pointer;
+  padding: .85rem 1.1rem; font-family: var(--font-headline); font-weight: 700; font-size: .84rem;
+  box-shadow: 0 14px 28px -10px rgba(43,28,23,.5);
+  transition: background .25s, transform .25s, box-shadow .25s;
+}
+.fab[hidden]{ display: none; }
+.fab svg{ width: 19px; height: 19px; flex: none; }
+.fab:hover{ background: var(--walnut-dark); transform: translateY(-2px); }
+.fab-top{ padding: .7rem; }
+.fab-top svg{ transform: rotate(-90deg); }
+.fab-callback span{ white-space: nowrap; }
+@media (max-width: 640px){
+  .fab-callback{ padding: .8rem; }
+  .fab-callback span{ display: none; }
+}
+
+.callback-panel{
+  width: min(21rem, calc(100vw - 2.4rem));
+  background: var(--cream); border-radius: var(--radius);
+  padding: clamp(1.3rem, 3vw, 1.7rem);
+  box-shadow: 0 30px 60px -20px rgba(43,28,23,.5);
+  position: relative;
+  animation: cbIn .25s var(--ease);
+}
+@keyframes cbIn{ from{ opacity: 0; transform: translateY(8px); } to{ opacity: 1; transform: translateY(0); } }
+.callback-panel h3{ font-size: 1.1rem; margin-bottom: .4rem; padding-right: 1.6rem; }
+.callback-panel p{ font-size: .84rem; color: var(--walnut-2); margin-bottom: 1.1rem; }
+.callback-close{
+  position: absolute; top: .9rem; right: .9rem;
+  width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;
+  background: none; border: none; color: var(--walnut-2); cursor: pointer; padding: 0;
+}
+.callback-close:hover{ color: var(--espresso); }
+.callback-close svg{ width: 18px; height: 18px; }
+
+@media (prefers-reduced-motion: reduce){
+  .callback-panel{ animation: none; }
+  .fab{ transition: none; }
+}

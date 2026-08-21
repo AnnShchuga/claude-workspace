@@ -109,18 +109,28 @@
     revealEls.forEach(el => el.classList.add('is-visible'));
   }
 
-  /* ---------- FAQ accordion ---------- */
-  document.querySelectorAll('.faq-item').forEach(item => {
-    const btn = item.querySelector('.faq-q');
-    const ans = item.querySelector('.faq-a');
-    const setState = (open) => {
-      item.classList.toggle('is-open', open);
-      ans.style.maxHeight = open ? ans.scrollHeight + 'px' : '0px';
-    };
-    setState(item.classList.contains('is-open'));
-    btn.addEventListener('click', () => setState(!item.classList.contains('is-open')));
+  /* ---------- FAQ accordion (только один открытый пункт за раз) ---------- */
+  document.querySelectorAll('.faq-list').forEach(list => {
+    const items = Array.from(list.querySelectorAll('.faq-item')).map(item => {
+      const btn = item.querySelector('.faq-q');
+      const ans = item.querySelector('.faq-a');
+      const setState = (open) => {
+        item.classList.toggle('is-open', open);
+        ans.style.maxHeight = open ? ans.scrollHeight + 'px' : '0px';
+      };
+      return { item, btn, ans, setState };
+    });
+    items.forEach(entry => {
+      entry.setState(entry.item.classList.contains('is-open'));
+      entry.btn.addEventListener('click', () => {
+        const willOpen = !entry.item.classList.contains('is-open');
+        items.forEach(other => other.setState(other === entry ? willOpen : false));
+      });
+    });
     window.addEventListener('resize', () => {
-      if (item.classList.contains('is-open')) ans.style.maxHeight = ans.scrollHeight + 'px';
+      items.forEach(entry => {
+        if (entry.item.classList.contains('is-open')) entry.ans.style.maxHeight = entry.ans.scrollHeight + 'px';
+      });
     });
   });
 
@@ -257,17 +267,16 @@
       photo: 'assets/photos/case-a4.jpg' }
   ];
 
-  function woodBg(i) {
-    return `assets/wood/wood-${(i % 4) + 1}.jpg`;
-  }
+  const PLACEHOLDER_MARK = 'assets/logo-mono.jpg';
 
   function caseCardHTML(item, i) {
-    const bg = item.photo || woodBg(i);
-    const mono = item.photo ? '' : `<div class="case-mono">${item.mono}</div>`;
+    const style = item.photo ? ` style="background-image:url('${item.photo}')"` : '';
+    const placeholderCls = item.photo ? '' : ' is-placeholder';
+    const mark = item.photo ? '' : `<img class="case-placeholder-mark" src="${PLACEHOLDER_MARK}" alt="" loading="lazy">`;
     return `
-      <div class="case-swatch" style="background-image:url('${bg}')">
+      <div class="case-swatch${placeholderCls}"${style}>
         <span class="case-tag">${item.tag}</span>
-        ${mono}
+        ${mark}
       </div>
       <div class="case-meta">
         <h4>${item.title}</h4>
@@ -348,8 +357,8 @@
     try { items = JSON.parse(container.getAttribute('data-media-grid')); } catch (e) { items = []; }
     container.innerHTML = items.map((item, i) => `
       <div class="grid-card">
-        <div class="case-swatch" style="background-image:url('${item.photo || woodBg(i)}')">
-          ${item.photo ? '' : `<div class="case-mono">${item.mono}</div>`}
+        <div class="case-swatch${item.photo ? '' : ' is-placeholder'}"${item.photo ? ` style="background-image:url('${item.photo}')"` : ''}>
+          ${item.photo ? '' : `<img class="case-placeholder-mark" src="${PLACEHOLDER_MARK}" alt="" loading="lazy">`}
         </div>
         <div class="case-meta">
           <h4>${item.title}</h4>
@@ -413,4 +422,85 @@
       videoSlot.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" title="Видеоотзыв клиента" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
     });
   }
+
+  /* ---------- floating widgets: scroll-to-top + quick callback request ---------- */
+  (() => {
+    const wrap = document.createElement('div');
+    wrap.className = 'floating-widgets';
+    wrap.innerHTML = `
+      <div class="callback-panel" id="callbackPanel" hidden role="dialog" aria-label="Заказать обратный звонок">
+        <button type="button" class="callback-close" id="callbackClose" aria-label="Закрыть">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+        <h3>Закажите звонок</h3>
+        <p>Оставьте имя и телефон — перезвоним в течение рабочего дня, без анкет и лишних полей.</p>
+        <form id="callbackForm">
+          <div class="field">
+            <label for="cb-name">Имя</label>
+            <input id="cb-name" name="name" type="text" placeholder="Имя" required>
+          </div>
+          <div class="field">
+            <label for="cb-phone">Телефон</label>
+            <input id="cb-phone" name="phone" type="tel" placeholder="+7 900 000-00-00" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">
+            Перезвоните мне
+            <svg viewBox="0 0 24 24"><use href="#icon-arrow"/></svg>
+          </button>
+          <p class="form-status" id="callbackStatus" hidden></p>
+        </form>
+      </div>
+      <button type="button" class="fab fab-callback" id="callbackFab" aria-haspopup="dialog" aria-expanded="false">
+        <svg viewBox="0 0 24 24"><use href="#icon-phone"/></svg>
+        <span>Обратный звонок</span>
+      </button>
+      <button type="button" class="fab fab-top" id="toTopFab" aria-label="Наверх страницы" hidden>
+        <svg viewBox="0 0 24 24"><use href="#icon-arrow"/></svg>
+      </button>
+    `;
+    document.body.appendChild(wrap);
+
+    const fab = document.getElementById('callbackFab');
+    const panel = document.getElementById('callbackPanel');
+    const closeBtn = document.getElementById('callbackClose');
+    const cbForm = document.getElementById('callbackForm');
+    const cbStatus = document.getElementById('callbackStatus');
+    const toTopFab = document.getElementById('toTopFab');
+
+    const setPanel = (open) => {
+      panel.hidden = !open;
+      fab.setAttribute('aria-expanded', String(open));
+      wrap.classList.toggle('panel-open', open);
+    };
+    fab.addEventListener('click', () => setPanel(panel.hidden));
+    closeBtn.addEventListener('click', () => setPanel(false));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setPanel(false); });
+
+    if (cbForm && cbStatus) {
+      cbForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = new FormData(cbForm);
+        const name = (data.get('name') || '').toString().trim();
+        const phone = (data.get('phone') || '').toString().trim();
+        if (!name || !phone) {
+          cbStatus.hidden = false;
+          cbStatus.style.color = '#b5453a';
+          cbStatus.textContent = 'Укажите имя и телефон.';
+          return;
+        }
+        const text = `Здравствуйте! Прошу перезвонить.\nИмя: ${name}\nТелефон: ${phone}`;
+        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+        cbStatus.hidden = false;
+        cbStatus.style.color = '';
+        cbStatus.textContent = 'Открываем WhatsApp с готовым сообщением…';
+        window.open(url, '_blank', 'noopener');
+        cbForm.reset();
+      });
+    }
+
+    toTopFab.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    const onScrollTop = () => { toTopFab.hidden = window.scrollY < 480; };
+    onScrollTop();
+    window.addEventListener('scroll', onScrollTop, { passive: true });
+  })();
 })();
