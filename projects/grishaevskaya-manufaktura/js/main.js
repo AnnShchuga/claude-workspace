@@ -348,8 +348,8 @@
     try { items = JSON.parse(container.getAttribute('data-media-grid')); } catch (e) { items = []; }
     container.innerHTML = items.map((item, i) => `
       <div class="grid-card">
-        <div class="case-swatch" style="background-image:url('${woodBg(i)}')">
-          <div class="case-mono">${item.mono}</div>
+        <div class="case-swatch" style="background-image:url('${item.photo || woodBg(i)}')">
+          ${item.photo ? '' : `<div class="case-mono">${item.mono}</div>`}
         </div>
         <div class="case-meta">
           <h4>${item.title}</h4>
