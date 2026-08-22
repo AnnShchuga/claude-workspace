@@ -433,7 +433,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
         </button>
         <h3>Закажите звонок</h3>
-        <p>Оставьте имя и телефон — перезвоним в течение рабочего дня, без анкет и лишних полей.</p>
+        <p>Оставьте имя и телефон — перезвоним в течение рабочего дня.</p>
         <form id="callbackForm">
           <div class="field">
             <label for="cb-name">Имя</label>
