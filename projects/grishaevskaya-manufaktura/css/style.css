@@ -3,12 +3,45 @@
    Палитра и типографика — по Design Book v1.0 (июль 2026)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&display=swap');
-
 @font-face{
-  font-family: 'Bewlay BR1 Cyrillic';
-  src: url('../fonts/BewlayBR1Cyrillic.woff2') format('woff2');
+  font-family: 'Tenor Sans';
+  src: url('../fonts/TenorSans-Regular.woff2') format('woff2');
   font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family: 'Inter';
+  src: url('../fonts/Inter-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family: 'Inter';
+  src: url('../fonts/Inter-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family: 'Inter';
+  src: url('../fonts/Inter-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family: 'Inter';
+  src: url('../fonts/Inter-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family: 'Inter';
+  src: url('../fonts/Inter-Bold.woff2') format('woff2');
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -21,17 +54,20 @@
 }
 
 :root{
-  --walnut:      #714E44;
-  --walnut-2:    #5C3F37;
-  --walnut-dark: #3A2620;
-  --espresso:    #2B1C17;
+  /* палитра «Тёплая эстетика дерева» — тёмный орех выведен из #693D30,
+     остальные ступени пересчитаны в тех же пропорциях светлоты, что и
+     раньше, чтобы контраст в кнопках/тексте не поехал */
+  --walnut:      #693D30;
+  --walnut-2:    #553227;
+  --walnut-dark: #341E18;
+  --espresso:    #261612;
   --sand:        #DCCFC2;
-  --sand-2:      #EAE0D6;
+  --sand-2:      #E8DCC4;
   --cream:       #F7F3EE;
   --cream-2:     #FBF9F6;
-  --sage:        #6B866F;
-  --sage-dark:   #566E5A;
-  --ink:         #2A2A2A;
+  --accent-warm:        #A27B5C;
+  --accent-warm-dark:   #8A6749;
+  --ink:         #1E1E1E;
   --white:       #FFFFFF;
 
   /* accent — оксидированная латунь, как фурнитура на фасадах (Blum, ручки, петли) */
@@ -39,10 +75,10 @@
   --brass-dark:  #7E5A26;
   --brass-light: #D9A857;
 
-  --font-display:  'Golos Text', 'PT Sans', system-ui, sans-serif;
-  --font-headline: 'Bewlay BR1 Cyrillic', 'Golos Text', system-ui, sans-serif;
-  --font-accent:   '129 Kosmos', 'Golos Text', cursive;
-  --font-body:     'Golos Text', system-ui, -apple-system, sans-serif;
+  --font-display:  'Inter', system-ui, sans-serif;
+  --font-headline: 'Tenor Sans', 'Inter', system-ui, sans-serif;
+  --font-accent:   '129 Kosmos', 'Inter', cursive;
+  --font-body:     'Inter', system-ui, -apple-system, sans-serif;
 
   --container: 1200px;
   --gap: clamp(1rem, 2vw, 2rem);
@@ -60,7 +96,7 @@ img, svg{ display: block; max-width: 100%; }
 a{ color: inherit; text-decoration: none; }
 button{ font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 input, textarea{ font: inherit; color: inherit; }
-:focus-visible{ outline: 2px solid var(--sage); outline-offset: 3px; }
+:focus-visible{ outline: 2px solid var(--accent-warm); outline-offset: 3px; }
 
 body{
   background: var(--cream);
@@ -103,9 +139,9 @@ section{ position: relative; }
 
 h1, h2, h3, h4{
   font-family: var(--font-headline);
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.1;
-  letter-spacing: .005em;
+  letter-spacing: -.01em;
   text-transform: uppercase;
   color: var(--espresso);
 }
@@ -154,7 +190,7 @@ h2.section-title{
 .bg-walnut{ background: var(--walnut-dark); }
 
 /* subtle top/bottom hairline dividers between bands */
-.hairline-top{ border-top: 1px solid rgba(42,42,42,.08); }
+.hairline-top{ border-top: 1px solid rgba(162,123,92,.25); }
 .on-dark.hairline-top{ border-top: 1px solid rgba(247,243,238,.12); }
 
 /* ---- buttons ---- */
@@ -185,8 +221,8 @@ h2.section-title{
 .btn-ghost:hover{ background: var(--walnut); color: var(--cream); transform: translateY(-2px); }
 .on-dark .btn-ghost{ border-color: rgba(247,243,238,.5); color: var(--cream); }
 .on-dark .btn-ghost:hover{ background: var(--cream); color: var(--espresso); }
-.btn-sage{ background: var(--sage); color: var(--cream); }
-.btn-sage:hover{ background: var(--sage-dark); transform: translateY(-2px); }
+.btn-sage{ background: var(--accent-warm); color: var(--cream); }
+.btn-sage:hover{ background: var(--accent-warm-dark); transform: translateY(-2px); }
 .btn-block{ width: 100%; justify-content: center; }
 
 /* ==========================================================================
@@ -625,10 +661,10 @@ h2.section-title{
   width: 100%; border: 1.5px solid rgba(42,42,42,.16); background: var(--white);
   padding: .8rem .9rem; font-size: .96rem; transition: border-color .2s;
 }
-.field input:focus, .field textarea:focus{ border-color: var(--sage); }
+.field input:focus, .field textarea:focus{ border-color: var(--accent-warm); }
 .field textarea{ resize: vertical; min-height: 84px; }
 .form-consent{ font-size: .74rem; color: var(--walnut-2); margin-top: .9rem; }
-.form-status{ font-size: .84rem; margin-top: .8rem; color: var(--sage-dark); font-weight: 700; }
+.form-status{ font-size: .84rem; margin-top: .8rem; color: var(--accent-warm-dark); font-weight: 700; }
 
 /* ==========================================================================
    Footer
@@ -667,7 +703,7 @@ h2.section-title{
    Trust / problem-solution band (главная, после hero)
    ========================================================================== */
 .trust-grid{ display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr); gap: clamp(2rem,5vw,4rem); align-items: center; }
-.trust-problem{ font-family: var(--font-headline); font-weight: 800; font-size: clamp(1.5rem,2.6vw,2.1rem); line-height: 1.28; margin-bottom: 1rem; color: var(--espresso); }
+.trust-problem{ font-family: var(--font-headline); font-weight: 400; font-size: clamp(1.5rem,2.6vw,2.1rem); line-height: 1.28; margin-bottom: 1rem; color: var(--espresso); }
 .trust-solution{ color: var(--walnut-2); font-size: 1.05rem; max-width: 52ch; }
 .video-slot{
   aspect-ratio: 16/9; position: relative; overflow: hidden; background: var(--espresso);
@@ -820,7 +856,7 @@ h2.section-title{
   display: flex; align-items: center; gap: .55rem;
   background: var(--walnut); color: var(--cream);
   border: none; border-radius: 999px; cursor: pointer;
-  padding: .85rem 1.1rem; font-family: var(--font-headline); font-weight: 700; font-size: .84rem;
+  padding: .85rem 1.1rem; font-family: var(--font-display); font-weight: 700; font-size: .84rem;
   box-shadow: 0 14px 28px -10px rgba(43,28,23,.5);
   transition: background .25s, transform .25s, box-shadow .25s;
 }
