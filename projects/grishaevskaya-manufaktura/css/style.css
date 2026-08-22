@@ -46,8 +46,8 @@
   font-display: swap;
 }
 @font-face{
-  font-family: '129 Kosmos';
-  src: url('../fonts/Kosmos129.woff2') format('woff2');
+  font-family: 'Great Vibes';
+  src: url('../fonts/GreatVibes-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -77,7 +77,7 @@
 
   --font-display:  'Inter', system-ui, sans-serif;
   --font-headline: 'Tenor Sans', 'Inter', system-ui, sans-serif;
-  --font-accent:   '129 Kosmos', 'Inter', cursive;
+  --font-accent:   'Great Vibes', 'Inter', cursive;
   --font-body:     'Inter', system-ui, -apple-system, sans-serif;
 
   --container: 1200px;
