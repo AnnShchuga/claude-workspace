@@ -658,8 +658,17 @@ h2.section-title{
 .footer-bottom{ border-top: 1px solid rgba(247,243,238,.14); padding-top: 1.2rem; display:flex; justify-content: space-between; gap: .8rem 1.6rem; flex-wrap: wrap; font-size: .78rem; }
 .footer-legal{ display:flex; flex-wrap: wrap; gap: .5rem 1.2rem; }
 .footer-legal a:hover{ color: var(--sand); }
-.footer-credit{ display: inline-flex; align-items: center; gap: .35rem; }
-.icon-heart{ width: 13px; height: 13px; color: var(--brass-light); flex: none; }
+
+.footer-signature{
+  margin-top: 1.3rem;
+  text-align: center;
+  font-family: var(--font-accent);
+  font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+  color: var(--sand);
+}
+.footer-signature .icon-heart{ display: inline-block; width: 15px; height: 15px; color: var(--brass-light); vertical-align: -1px; margin: 0 .3em; }
+.footer-signature a{ color: var(--brass-light); text-underline-offset: 3px; }
+.footer-signature a:hover{ color: var(--cream); text-decoration: underline; }
 
 /* ==========================================================================
    Legal pages (cookie / licenses / terms / privacy)
