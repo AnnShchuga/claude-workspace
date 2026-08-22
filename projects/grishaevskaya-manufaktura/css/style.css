@@ -304,22 +304,28 @@ h2.section-title{
   overflow: hidden;
 }
 
-.hero-copy{ max-width: 46rem; pointer-events: auto; }
+.hero-copy{ max-width: 46rem; }
+.hero-copy .hero-cta a{ pointer-events: auto; }
 
 .hero-photo{
   position: relative;
   width: 100%;
-  aspect-ratio: 1900 / 1059;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   background: #3a2820;
 }
-.hero-photo img{
+.hero-layer{
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover;
 }
+.hero-layer-overlay{
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+.hero-layer-overlay.is-active{ opacity: 1; }
 
 .hero-scrim{
-  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  position: absolute; inset: 0; z-index: 3; pointer-events: none;
   background:
     linear-gradient(180deg, rgba(43,28,23,.7) 0%, rgba(43,28,23,0) 26%),
     linear-gradient(90deg, rgba(43,28,23,.92) 0%, rgba(43,28,23,.6) 40%, rgba(43,28,23,0) 70%);
@@ -332,33 +338,14 @@ h2.section-title{
   pointer-events: none;
 }
 
-.hero-hotspots{ position: absolute; inset: 0; z-index: 1; perspective: 1400px; }
+.hero-hotspots{ position: absolute; inset: 0; z-index: 2; }
 .hero-hotspot{
   position: absolute; padding: 0; border: 0; background: none; cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
-.hero-hotspot .front, .hero-hotspot .interior{ position: absolute; inset: 0; }
-.hero-hotspot .interior{
-  z-index: 1;
-  background-color: #221712;
-  background-repeat: no-repeat;
-  box-shadow: inset 0 0 30px rgba(0,0,0,.45);
-}
-.hero-hotspot .front{
-  z-index: 2; background-repeat: no-repeat;
-  transition: transform .55s cubic-bezier(.22,.9,.3,1), box-shadow .55s;
-}
-.hero-hotspot.door.hinge-left .front{ transform-origin: left center; }
-.hero-hotspot.door.hinge-right .front{ transform-origin: right center; }
-.hero-hotspot.door.hinge-left:hover .front{ transform: rotateY(-58deg); box-shadow: 14px 20px 34px rgba(0,0,0,.55); }
-.hero-hotspot.door.hinge-right:hover .front{ transform: rotateY(58deg); box-shadow: -14px 20px 34px rgba(0,0,0,.55); }
-.hero-hotspot.drawer .front{ transform-origin: center; }
-.hero-hotspot.drawer:hover .front{ transform: perspective(700px) translateZ(56px) translateY(14px); box-shadow: 0 22px 30px rgba(0,0,0,.55); }
-.hero-hotspot.oven .front{ transform-origin: center bottom; }
-.hero-hotspot.oven:hover .front{ transform: perspective(900px) rotateX(48deg); box-shadow: 0 22px 30px rgba(0,0,0,.5); }
 
 @media (prefers-reduced-motion: reduce){
-  .hero-hotspot .front{ transition: none; }
+  .hero-layer-overlay{ transition: none; }
 }
 
 /* Doors-open interaction only makes sense with a real mouse hovering —

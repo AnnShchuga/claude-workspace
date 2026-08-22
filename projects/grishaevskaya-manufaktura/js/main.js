@@ -5,7 +5,20 @@
   const heroImg = document.getElementById('heroKitchenImg');
   if (heroImg) {
     const HERO_POS_X = 0.20, HERO_POS_Y = 0.5; // must match .hero-photo img { object-position }
-    const heroCopy = document.querySelector('.hero-copy');
+    // Measure the actual rendered text lines and buttons, not their block-level
+    // wrappers — those stretch to .hero-copy's max-width regardless of how much
+    // of it real content fills, so using their own box would hide hotspots under
+    // empty invisible padding to the right of short lines/buttons.
+    const heroCopyRects = () => {
+      const rects = [];
+      document.querySelectorAll('.hero-copy h1, .hero-copy .hero-sub, .hero-copy .hero-hint').forEach(el => {
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        rects.push(...range.getClientRects());
+      });
+      document.querySelectorAll('.hero-copy .hero-cta a').forEach(el => rects.push(el.getBoundingClientRect()));
+      return rects;
+    };
 
     const rectsOverlap = (a, b) =>
       a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
@@ -23,24 +36,24 @@
       const offsetX = (cw - renderW) * HERO_POS_X;
       const offsetY = (ch - renderH) * HERO_POS_Y;
       const scale = renderW / iw;
-      const src = heroImg.currentSrc || heroImg.src;
 
       const containerRect = container.getBoundingClientRect();
-      const copyRect = heroCopy ? heroCopy.getBoundingClientRect() : null;
-      const copyRectLocal = copyRect ? {
-        left: copyRect.left - containerRect.left, right: copyRect.right - containerRect.left,
-        top: copyRect.top - containerRect.top, bottom: copyRect.bottom - containerRect.top
-      } : null;
+      // Small inward inset absorbs line-height slack around the real glyphs so a
+      // hotspot isn't hidden just for grazing a text box's empty vertical padding.
+      const INSET = 8;
+      const copyRectsLocal = heroCopyRects().map(r => ({
+        left: r.left - containerRect.left + INSET, right: r.right - containerRect.left - INSET,
+        top: r.top - containerRect.top + INSET, bottom: r.bottom - containerRect.top - INSET
+      }));
 
       document.querySelectorAll('.hero-hotspot').forEach(el => {
         const x = parseFloat(el.dataset.x), y = parseFloat(el.dataset.y);
         const w = parseFloat(el.dataset.w), h = parseFloat(el.dataset.h);
         const left = offsetX + x * scale, top = offsetY + y * scale;
         const width = w * scale, height = h * scale;
+        const spotRect = { left, right: left + width, top, bottom: top + height };
 
-        if (copyRectLocal && rectsOverlap(
-          { left, right: left + width, top, bottom: top + height }, copyRectLocal
-        )) {
+        if (copyRectsLocal.some(r => rectsOverlap(spotRect, r))) {
           el.style.display = 'none';
           return;
         }
@@ -50,25 +63,27 @@
         el.style.top = top + 'px';
         el.style.width = width + 'px';
         el.style.height = height + 'px';
-        const front = el.querySelector('.front');
-        if (front) {
-          front.style.backgroundImage = `url('${src}')`;
-          front.style.backgroundSize = renderW + 'px ' + renderH + 'px';
-          front.style.backgroundPosition = (offsetX - left) + 'px ' + (offsetY - top) + 'px';
-        }
-        const interior = el.querySelector('.interior');
-        const interiorSrc = el.dataset.interior;
-        if (interior && interiorSrc) {
-          interior.style.backgroundImage = `url('${interiorSrc}')`;
-          interior.style.backgroundSize = renderW + 'px ' + renderH + 'px';
-          interior.style.backgroundPosition = (offsetX - left) + 'px ' + (offsetY - top) + 'px';
-        }
       });
     };
 
     if (heroImg.complete && heroImg.naturalWidth) layoutHeroHotspots();
     heroImg.addEventListener('load', layoutHeroHotspots);
     window.addEventListener('resize', layoutHeroHotspots);
+    // Text metrics shift once self-hosted webfonts swap in after the initial
+    // (fallback-font) layout — recompute so hotspot collision rects stay accurate.
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutHeroHotspots);
+
+    const heroLayers = {};
+    document.querySelectorAll('.hero-layer-overlay').forEach(el => { heroLayers[el.dataset.layer] = el; });
+    const setActiveHeroLayer = (key) => {
+      Object.values(heroLayers).forEach(el => el.classList.remove('is-active'));
+      if (key && heroLayers[key]) heroLayers[key].classList.add('is-active');
+    };
+    document.querySelectorAll('.hero-hotspot').forEach(el => {
+      const key = el.dataset.layer;
+      el.addEventListener('mouseenter', () => setActiveHeroLayer(key));
+      el.addEventListener('mouseleave', () => setActiveHeroLayer(null));
+    });
   }
 
   /* ---------- header scroll state ---------- */
