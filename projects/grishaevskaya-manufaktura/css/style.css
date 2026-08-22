@@ -658,6 +658,8 @@ h2.section-title{
 .footer-bottom{ border-top: 1px solid rgba(247,243,238,.14); padding-top: 1.2rem; display:flex; justify-content: space-between; gap: .8rem 1.6rem; flex-wrap: wrap; font-size: .78rem; }
 .footer-legal{ display:flex; flex-wrap: wrap; gap: .5rem 1.2rem; }
 .footer-legal a:hover{ color: var(--sand); }
+.footer-credit{ display: inline-flex; align-items: center; gap: .35rem; }
+.icon-heart{ width: 13px; height: 13px; color: var(--brass-light); flex: none; }
 
 /* ==========================================================================
    Legal pages (cookie / licenses / terms / privacy)
