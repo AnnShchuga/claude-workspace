@@ -304,16 +304,20 @@
   const detail = document.getElementById('caseDetail');
   if (track && detail) {
     function renderDetail(item) {
+      const photo = item.photo || 'assets/photos/case-kh.jpg';
       detail.innerHTML = `
-        <div class="lead">
-          <h3>${item.title}</h3>
-          <div class="stars">фиксированная цена после замера</div>
+        <div class="case-detail-media"><img src="${photo}" alt="${item.title}" loading="lazy"></div>
+        <div class="case-detail-body">
+          <div class="lead">
+            <h3>${item.title}</h3>
+            <div class="stars">фиксированная цена после замера</div>
+          </div>
+          <dl class="case-stat"><dt>Формат</dt><dd>${item.area}</dd></dl>
+          <dl class="case-stat"><dt>Материал</dt><dd>${item.material}</dd></dl>
+          <dl class="case-stat"><dt>Срок</dt><dd>${item.days}</dd></dl>
+          <dl class="case-stat"><dt>Стоимость</dt><dd>${item.price}</dd></dl>
+          <p class="case-quote">${item.note}</p>
         </div>
-        <dl class="case-stat"><dt>Формат</dt><dd>${item.area}</dd></dl>
-        <dl class="case-stat"><dt>Материал</dt><dd>${item.material}</dd></dl>
-        <dl class="case-stat"><dt>Срок</dt><dd>${item.days}</dd></dl>
-        <dl class="case-stat"><dt>Стоимость</dt><dd>${item.price}</dd></dl>
-        <p class="case-quote">${item.note}</p>
       `;
     }
     CASES.slice(0, 6).forEach((item, i) => {
