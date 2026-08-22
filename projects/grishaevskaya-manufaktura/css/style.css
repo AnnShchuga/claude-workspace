@@ -662,12 +662,17 @@ h2.section-title{
 .footer-signature{
   margin-top: 1.3rem;
   text-align: center;
-  font-family: var(--font-accent);
-  font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+  font-family: var(--font-body);
+  font-size: .84rem;
   color: var(--sand);
 }
-.footer-signature .icon-heart{ display: inline-block; width: 15px; height: 15px; color: var(--brass-light); vertical-align: -1px; margin: 0 .3em; }
-.footer-signature a{ color: var(--brass-light); text-underline-offset: 3px; }
+.footer-signature .icon-heart{ display: inline-block; width: 15px; height: 15px; color: #C1503E; vertical-align: -2px; margin: 0 .3em; }
+.footer-signature a{
+  font-family: var(--font-accent);
+  font-size: 1.7em;
+  color: var(--sand);
+  text-underline-offset: 3px;
+}
 .footer-signature a:hover{ color: var(--cream); text-decoration: underline; }
 
 /* ==========================================================================
