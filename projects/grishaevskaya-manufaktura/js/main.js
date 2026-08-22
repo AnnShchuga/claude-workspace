@@ -292,7 +292,7 @@
       detail.innerHTML = `
         <div class="lead">
           <h3>${item.title}</h3>
-          <div class="stars">★★★★★ <span style="color:var(--walnut-2);font-weight:400">фиксированная цена после замера</span></div>
+          <div class="stars">фиксированная цена после замера</div>
         </div>
         <dl class="case-stat"><dt>Формат</dt><dd>${item.area}</dd></dl>
         <dl class="case-stat"><dt>Материал</dt><dd>${item.material}</dd></dl>
@@ -502,5 +502,33 @@
     const onScrollTop = () => { toTopFab.hidden = window.scrollY < 480; };
     onScrollTop();
     window.addEventListener('scroll', onScrollTop, { passive: true });
+  })();
+
+  /* ---------- cookie consent banner ---------- */
+  (() => {
+    const STORAGE_KEY = 'gm-cookie-consent';
+    let consented = false;
+    try { consented = localStorage.getItem(STORAGE_KEY) === '1'; } catch (e) {}
+    if (consented) return;
+
+    const banner = document.createElement('div');
+    banner.className = 'cookie-banner';
+    banner.id = 'cookieBanner';
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-label', 'Уведомление об использовании файлов cookie');
+    banner.innerHTML = `
+      <div class="wrap cookie-banner-inner">
+        <p>Мы используем файлы cookie, чтобы сайт работал корректно и был вам удобен. Продолжая пользоваться сайтом, вы соглашаетесь с <a href="cookie-policy.html">политикой использования cookie</a>.</p>
+        <button type="button" class="btn btn-primary" id="cookieAccept">Хорошо, принимаю</button>
+      </div>
+    `;
+    document.body.appendChild(banner);
+    requestAnimationFrame(() => banner.classList.add('is-visible'));
+
+    document.getElementById('cookieAccept').addEventListener('click', () => {
+      try { localStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
+      banner.classList.remove('is-visible');
+      setTimeout(() => banner.remove(), 450);
+    });
   })();
 })();
