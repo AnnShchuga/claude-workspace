@@ -426,6 +426,78 @@
       "sourceType": "github",
       "skillPath": "skills/video/SKILL.md",
       "computedHash": "53f7082208785054a33bba07d188a4d1c8054c22b269146f3d3edccbeca7db81"
+    },
+    "impeccable": {
+      "source": "pbakaus/impeccable",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/impeccable/SKILL.md",
+      "computedHash": "7dbaaae9719bd75c573f3d16c61e958393f9e7bd773237b73c0f40a30ae95c69"
+    },
+    "hallmark": {
+      "source": "Nutlope/hallmark",
+      "sourceType": "github",
+      "skillPath": "skills/hallmark/SKILL.md",
+      "computedHash": "59469635bbbd21acddbc664d95e8d97147f454b2d8f4a0a89c7d2c5afbe67577"
+    },
+    "scroll-world": {
+      "source": "oso95/scroll-world",
+      "sourceType": "github",
+      "skillPath": "skills/scroll-world/SKILL.md",
+      "computedHash": "e56fe396c1fa258278289cfa9cbf17253519f11f4856535f7709dd2368e3e65e"
+    },
+    "interface-design": {
+      "source": "Dammyjay93/interface-design",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/interface-design/SKILL.md",
+      "computedHash": "720b31a31276e899fbe3006a33cbfeaceb77a73ba4c27b80d29afd38c8b7b208"
+    },
+    "emil-design-eng": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/emil-design-eng/SKILL.md",
+      "computedHash": "e71de849347050c2c573c1cf24d742d5a13459557ecffa6e562f08006f46b5b7"
+    },
+    "frontend-design-pro": {
+      "source": "claudekit/frontend-design-pro-demo",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design-pro/SKILL.md",
+      "computedHash": "21c09ad1c6b42c9704de4dab6772e637ba30147452f4f9a995abcda0236af721"
+    },
+    "ui-refactor": {
+      "source": "LovroPodobnik/refactoring-ui-skill",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/ui-refactor/SKILL.md",
+      "computedHash": "7782f276c0d00725ccfa879494543a70ef854671259a8940193ba31ed4b150ea"
+    },
+    "ux-heuristics": {
+      "source": "wondelai/skills",
+      "sourceType": "github",
+      "skillPath": "ux-heuristics/SKILL.md",
+      "computedHash": "cb1ea3de8b6e605614cc59b21d41830d2d82af22e51069bb4c5bb53790cd622b"
+    },
+    "hooked-ux": {
+      "source": "wondelai/skills",
+      "sourceType": "github",
+      "skillPath": "hooked-ux/SKILL.md",
+      "computedHash": "775ae946b15f03d787077c35d166a9addb1e241cb9ffea03ceee3a1be198175e"
+    },
+    "app-store-screenshots": {
+      "source": "adamlyttleapps/claude-skill-aso-appstore-screenshots",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "5a29430e5be87a3b13a7cfa9c80758121b7fa4493a0e948229405cc11f5533c0"
+    },
+    "figma-to-react": {
+      "source": "Properly-DEV/figma-to-code-skills",
+      "sourceType": "github",
+      "skillPath": "ds-figma-to-react-tw/SKILL.md",
+      "computedHash": "c64a9de0959da1e9e83aaaee70ee36f49174b878f2646057ca2ead9834fc5310"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/web-design-guidelines/SKILL.md",
+      "computedHash": "f4647ca866a3accf763777f83e7682954f0187cd6bea7eea0399796652414e8f"
     }
   }
 }

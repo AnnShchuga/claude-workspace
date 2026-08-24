@@ -5,9 +5,32 @@
         "source": "github",
         "repo": "alirezarezvani/claude-skills"
       }
+    },
+    "designer-skills": {
+      "source": {
+        "source": "github",
+        "repo": "Owl-Listener/designer-skills"
+      }
+    },
+    "bencium-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "bencium/bencium-claude-code-design-skill"
+      }
     }
   },
   "enabledPlugins": {
+    "design-research@designer-skills": true,
+    "design-systems@designer-skills": true,
+    "ux-strategy@designer-skills": true,
+    "ui-design@designer-skills": true,
+    "interaction-design@designer-skills": true,
+    "prototyping-testing@designer-skills": true,
+    "design-ops@designer-skills": true,
+    "designer-toolkit@designer-skills": true,
+    "visual-critique@designer-skills": true,
+    "bencium-innovative-ux-designer@bencium-marketplace": true,
+    "bencium-controlled-ux-designer@bencium-marketplace": true,
     "marketing-skills@claude-code-skills": true,
     "c-level-skills@claude-code-skills": true,
     "c-level-agents@claude-code-skills": true,

@@ -1,0 +1,558 @@
+<title>Библиотека скиллов</title>
+<style>
+:root {
+  --bg: #ede9e1;
+  --paper: #faf8f3;
+  --ink: #24211c;
+  --ink-soft: #5a5548;
+  --rule: #d8d2c2;
+  --accent: #8a5a2b;
+  --accent-soft: #b98a4e;
+  --tag-vendored: #3f6b52;
+  --tag-platform: #2b5a7a;
+  --tag-marketplace: #8a5a2b;
+  --shadow: 0 1px 0 rgba(36,33,28,0.06);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1b1a17;
+    --paper: #242220;
+    --ink: #ece7dc;
+    --ink-soft: #a89f8c;
+    --rule: #3a362f;
+    --accent: #d3a06a;
+    --accent-soft: #b98a4e;
+    --tag-vendored: #7fb896;
+    --tag-platform: #7fb0d6;
+    --tag-marketplace: #d3a06a;
+    --shadow: 0 1px 0 rgba(0,0,0,0.3);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1b1a17;
+  --paper: #242220;
+  --ink: #ece7dc;
+  --ink-soft: #a89f8c;
+  --rule: #3a362f;
+  --accent: #d3a06a;
+  --accent-soft: #b98a4e;
+  --tag-vendored: #7fb896;
+  --tag-platform: #7fb0d6;
+  --tag-marketplace: #d3a06a;
+  --shadow: 0 1px 0 rgba(0,0,0,0.3);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.wrap {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 56px 24px 96px;
+}
+
+header.masthead {
+  border-bottom: 3px double var(--rule);
+  padding-bottom: 28px;
+  margin-bottom: 40px;
+}
+header.masthead .kicker {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+header.masthead h1 {
+  font-family: Iowan Old Style, Palatino Linotype, Georgia, serif;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 600;
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+}
+header.masthead p.lede {
+  font-size: 16px;
+  color: var(--ink-soft);
+  max-width: 62ch;
+  margin: 0 0 18px;
+}
+.stats {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.stats b {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+}
+
+.legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+
+nav.toc {
+  columns: 2;
+  column-gap: 32px;
+  margin-bottom: 48px;
+  padding: 20px 24px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+nav.toc a {
+  display: block;
+  break-inside: avoid;
+  font-size: 13.5px;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 5px 0;
+  border-bottom: 1px solid transparent;
+}
+nav.toc a:hover { color: var(--accent); }
+nav.toc .n { color: var(--ink-soft); font-variant-numeric: tabular-nums; margin-right: 8px; }
+
+section.shelf {
+  margin-bottom: 44px;
+  scroll-margin-top: 20px;
+}
+section.shelf .shelf-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 8px;
+  margin-bottom: 4px;
+}
+section.shelf h2 {
+  font-family: Iowan Old Style, Palatino Linotype, Georgia, serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+section.shelf .count {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+section.shelf .desc {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 8px 0 14px;
+  max-width: 68ch;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: minmax(140px, 200px) 1fr auto;
+  gap: 14px;
+  align-items: baseline;
+  padding: 9px 10px;
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+}
+.item:nth-child(odd) { background: var(--paper); }
+.item .name {
+  font-weight: 600;
+  font-size: 13.5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+.item .purpose {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+.item .src {
+  font-size: 10.5px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  white-space: nowrap;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  justify-self: end;
+  align-self: center;
+}
+.src.vendored { color: var(--tag-vendored); border: 1px solid var(--tag-vendored); }
+.src.platform { color: var(--tag-platform); border: 1px solid var(--tag-platform); }
+.src.marketplace { color: var(--tag-marketplace); border: 1px solid var(--tag-marketplace); }
+
+@media (max-width: 640px) {
+  .item { grid-template-columns: 1fr; gap: 3px; }
+  .item .src { justify-self: start; }
+  nav.toc { columns: 1; }
+}
+
+footer.note {
+  margin-top: 56px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+footer.note code { font-family: ui-monospace, monospace; background: var(--paper); padding: 1px 5px; border-radius: 3px; }
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">Каталог · claude-workspace</div>
+  <h1>Библиотека скиллов</h1>
+  <p class="lede">Полная опись всего, что установлено и подключено в этой рабочей среде — провендоренные скиллы репозитория, встроенные платформенные скиллы и плагины из подключённых маркетплейсов, — собранная в 16 разделов по назначению.</p>
+  <div class="stats">
+    <div><b>222</b> позиции</div>
+    <div><b>16</b> разделов</div>
+    <div><b>92</b> провендорено в репозиторий</div>
+    <div><b>32</b> платформенных</div>
+    <div><b>98</b> плагинов из маркетплейсов</div>
+  </div>
+  <div class="legend">
+    <span><i class="dot" style="background:var(--tag-vendored)"></i>vendored — файлы скилла лежат в репозитории</span>
+    <span><i class="dot" style="background:var(--tag-platform)"></i>platform — встроенный скилл Claude</span>
+    <span><i class="dot" style="background:var(--tag-marketplace)"></i>marketplace — плагин из подключённого маркетплейса</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#design"><span class="n">01</span>Дизайн и UI/UX</a>
+  <a href="#images"><span class="n">02</span>Изображения и графика</a>
+  <a href="#video"><span class="n">03</span>Видео и анимация</a>
+  <a href="#web"><span class="n">04</span>Сайты и веб</a>
+  <a href="#writing"><span class="n">05</span>Тексты и копирайтинг</a>
+  <a href="#marketing"><span class="n">06</span>Маркетинг и рост</a>
+  <a href="#research"><span class="n">07</span>Исследования и аналитика</a>
+  <a href="#docs"><span class="n">08</span>Документы и презентации</a>
+  <a href="#resume"><span class="n">09</span>Резюме и карьера</a>
+  <a href="#business"><span class="n">10</span>Бизнес и C-level</a>
+  <a href="#product"><span class="n">11</span>Продукт и управление</a>
+  <a href="#engineering"><span class="n">12</span>Инженерия и DevOps</a>
+  <a href="#ai"><span class="n">13</span>AI/LLM и агенты</a>
+  <a href="#compliance"><span class="n">14</span>Комплаенс и безопасность</a>
+  <a href="#productivity"><span class="n">15</span>Продуктивность</a>
+  <a href="#automation"><span class="n">16</span>Автоматизация и интеграции</a>
+</nav>
+
+<!-- 01 DESIGN -->
+<section class="shelf" id="design">
+  <div class="shelf-head"><h2>01 · Дизайн и UI/UX</h2><span class="count">28</span></div>
+  <p class="desc">Визуальный дизайн интерфейсов, дизайн-системы, анти-slop критика, эвристики юзабилити. Цветовые палитры и типографика идут внутри этих скиллов (design-system, ui-ux-pro-max, hallmark, refactoring-ui), отдельного узкого "скилла для палитр" нет.</p>
+  <div class="item"><span class="name">frontend-design</span><span class="purpose">Эстетическое направление, типографика, не-шаблонный визуальный выбор для нового UI</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">design-taste-frontend</span><span class="purpose">Anti-slop скилл для лендингов/портфолио/редизайнов ("Taste Skill", Leonxlnx)</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">ui-ux-pro-max</span><span class="purpose">Общий UI/UX-скилл: стили, шрифтовые пары, цвета, иконки, паттерны (CSV-датасеты)</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">ui-styling</span><span class="purpose">Практическая стилизация интерфейсов</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">design</span><span class="purpose">Критика дизайна, UX-копирайтинг, a11y-аудит, dev handoff</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">design-system</span><span class="purpose">Токены (primitive→semantic→component), спецификации компонентов</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">stop-slop</span><span class="purpose">Борьба с "ИИ-шаблонностью" в дизайне и контенте</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">hallmark</span><span class="purpose">Anti-AI-slop дизайн лендингов/приложений: 21 тема, 57 slop-gate проверок (Nutlope)</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">impeccable</span><span class="purpose">Словарь дизайна и анти-паттерны для цвета, типографики, layout, motion (pbakaus)</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">interface-design</span><span class="purpose">Craft-first дизайн дашбордов, admin-панелей, SaaS-интерфейсов (Dammyjay93)</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">frontend-design-pro</span><span class="purpose">Production-ready интерфейсы + подбор реальных фото/промптов для картинок</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">ui-refactor</span><span class="purpose">Тактические правила из книги Refactoring UI: иерархия, spacing, цвет, тени</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">ux-heuristics</span><span class="purpose">Эвристики Нильсена, законы Круга, WCAG-чеклист, тёмные паттерны</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">hooked-ux</span><span class="purpose">Hook Model Нира Эяля: триггер → действие → переменная награда → вклад</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">web-design-guidelines</span><span class="purpose">Проверка UI-кода на соответствие Web Interface Guidelines (Vercel)</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">emil-design-eng</span><span class="purpose">Философия полировки UI и анимаций Эмиля Ковальски</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">banner-design</span><span class="purpose">Баннеры для соцсетей, рекламы, hero-секций сайта — 13+ стилей</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">brand</span><span class="purpose">Голос бренда, визуальная айдентика, брендбук</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">brand-guidelines</span><span class="purpose">Брендбук и правила использования айдентики</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">theme-factory</span><span class="purpose">Генерация визуальных тем/токенов</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">apple-hig-expert</span><span class="purpose">Гайдлайны Apple Human Interface Guidelines ("iOS HIG Design")</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">a11y-audit</span><span class="purpose">Аудит доступности интерфейса</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">design-research</span><span class="purpose">Персоны, empathy maps, journey maps, интервью, card sorting</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">design-systems</span><span class="purpose">Компонентные спеки, токены, нейминг, сетки, документация системы</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">ux-strategy</span><span class="purpose">Информационная архитектура, навигация, user flows, конкурентный UX-аудит</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">ui-design</span><span class="purpose">Цветовые палитры, типографические системы, сетки, dark mode, визуальная иерархия</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">interaction-design</span><span class="purpose">Микро-интеракции, анимация, состояния ошибок, feedback-паттерны</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">prototyping-testing</span><span class="purpose">Wireframe-спеки, юзабилити-тестирование, A/B-дизайн, benchmark-анализ</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">design-ops</span><span class="purpose">Handoff-спеки, критика дизайна, планирование design sprint, design debt</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">designer-toolkit</span><span class="purpose">Портфолио, резюме дизайнера, кейс-стади, презентации, дизайн-брифы</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">visual-critique</span><span class="purpose">Иерархия, консистентность бренда, композиция, /critique-screen</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">bencium-innovative-ux-designer</span><span class="purpose">Смелые, экспериментальные UX-решения (bencium.io)</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">bencium-controlled-ux-designer</span><span class="purpose">Консистентный, контролируемый UX по стандартам (bencium.io)</span><span class="src marketplace">marketplace</span></div>
+</section>
+
+<!-- 02 IMAGES -->
+<section class="shelf" id="images">
+  <div class="shelf-head"><h2>02 · Изображения и графика</h2><span class="count">8</span></div>
+  <p class="desc">Генерация и композиция изображений. Кастомных "скиллов для шрифтов" нет — шрифтовые пары идут внутри ui-ux-pro-max / hallmark / design-system.</p>
+  <div class="item"><span class="name">image</span><span class="purpose">Генерация/оптимизация маркетинговых изображений: hero, соцсети, OG-картинки</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">canvas-design</span><span class="purpose">Постеры и художественные визуалы в PNG/PDF</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">algorithmic-art</span><span class="purpose">Генеративная/алгоритмическая графика</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">app-store-screenshots</span><span class="purpose">ASO-скриншоты для App Store/Google Play по анализу кода приложения</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">figma-to-react</span><span class="purpose">Конвертация компонентов Figma в токен-driven React/Tailwind код</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">dataviz</span><span class="purpose">Графики, дашборды, цветовые палитры для данных (валидатор палитры)</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">banner-design</span><span class="purpose">См. также раздел 01 — визуальные баннеры</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">slack-gif-creator</span><span class="purpose">Создание GIF-стикеров/реакций для Slack</span><span class="src platform">platform</span></div>
+</section>
+
+<!-- 03 VIDEO -->
+<section class="shelf" id="video">
+  <div class="shelf-head"><h2>03 · Видео и анимация</h2><span class="count">15</span></div>
+  <div class="item"><span class="name">video</span><span class="purpose">Продакшн-гайд для маркетингового видео</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">scroll-world</span><span class="purpose">Scroll-scrubbed "полёт сквозь мир" лендинг на Higgsfield (oso95)</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">remotion-create</span><span class="purpose">Создание нового видео-проекта на Remotion</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">remotion-video</span><span class="purpose">Общий гайд по видео на Remotion</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">remotion-best-practices</span><span class="purpose">Роутер по всем Remotion-скиллам, best practices</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">remotion-captions</span><span class="purpose">Транскрипция и анимация субтитров</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">remotion-markup</span><span class="purpose">Контент, анимация и эффекты в разметке Remotion</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">remotion-interactivity</span><span class="purpose">Интерактивность в Remotion-видео</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">remotion-maps</span><span class="purpose">Анимации карт в Remotion</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">remotion-multimedia</span><span class="purpose">Работа с медиа через Mediabunny</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">remotion-render</span><span class="purpose">Экспорт/рендер готового видео</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">remotion-saas</span><span class="purpose">Приложение на Remotion как SaaS-продукт</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">remotion-upgrade</span><span class="purpose">Миграция/апгрейд версий Remotion</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">remotion-docs</span><span class="purpose">Поиск по документации Remotion</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">elevenlabs-remotion-skill</span><span class="purpose">AI-озвучка для видео через ElevenLabs (нужен API-ключ)</span><span class="src vendored">vendored</span></div>
+</section>
+
+<!-- 04 WEB -->
+<section class="shelf" id="web">
+  <div class="shelf-head"><h2>04 · Сайты и веб</h2><span class="count">7</span></div>
+  <p class="desc">Про Тильду отдельно: скилл <code>tilda</code> уже подключён — специально устанавливать не нужно.</p>
+  <div class="item"><span class="name">tilda</span><span class="purpose">Создание и вёрстка сайтов на конструкторе Тильда</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">site-architecture</span><span class="purpose">Структура и архитектура сайта, карта разделов</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">web-artifacts-builder</span><span class="purpose">Сборка веб-страниц/интерактивных Artifacts</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">artifact-design</span><span class="purpose">Дизайн-гайд и основы для Artifacts (эта страница сделана по нему)</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">artifact-diagramming</span><span class="purpose">Диаграммы внутри Artifacts (Mermaid, inline SVG)</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">artifact-capabilities</span><span class="purpose">Runtime-возможности для опубликованных Artifacts (живые данные, состояние)</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">landing</span><span class="purpose">Генератор одностраничных лендингов (GSAP, brand-палитра)</span><span class="src marketplace">marketplace</span></div>
+</section>
+
+<!-- 05 WRITING -->
+<section class="shelf" id="writing">
+  <div class="shelf-head"><h2>05 · Тексты и копирайтинг</h2><span class="count">14</span></div>
+  <div class="item"><span class="name">copywriting</span><span class="purpose">Тексты для сайта: заголовки, hero, CTA, value proposition</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">copy-editing</span><span class="purpose">Редактура и полировка уже написанного текста</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">content-strategy</span><span class="purpose">Планирование контент-стратегии, топики, контент-план</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">content-research-writer</span><span class="purpose">Исследование + цитаты + улучшение hook при написании текста</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">emails</span><span class="purpose">Email-последовательности, drip-кампании, lifecycle-письма</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">cold-email</span><span class="purpose">Холодные B2B-письма и follow-up цепочки</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">ad-creative</span><span class="purpose">Рекламные тексты: заголовки, описания, вариации объявлений</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">social</span><span class="purpose">Контент для соцсетей</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">sms</span><span class="purpose">SMS-рассылки</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">schema</span><span class="purpose">Структурированные данные (schema.org)</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">doc-coauthoring</span><span class="purpose">Совместное написание документов</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">internal-comms</span><span class="purpose">Внутренние коммуникации компании</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">markdown-html-skills</span><span class="purpose">Конвертация и работа с Markdown/HTML-контентом</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">voice-dna-creator</span><span class="purpose">Определение и воспроизведение авторского голоса/стиля текста</span><span class="src vendored">vendored</span></div>
+</section>
+
+<!-- 06 MARKETING -->
+<section class="shelf" id="marketing">
+  <div class="shelf-head"><h2>06 · Маркетинг и рост</h2><span class="count">36</span></div>
+  <div class="item"><span class="name">ads</span><span class="purpose">Платная реклама: Google/Meta/LinkedIn, таргетинг, бюджет</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">ai-seo</span><span class="purpose">Оптимизация под AI-поиск (AEO/GEO/LLM-цитирование)</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">seo-audit</span><span class="purpose">Технический и контентный SEO-аудит</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">analytics</span><span class="purpose">Настройка трекинга: GA4, GTM, UTM, события</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">attribution</span><span class="purpose">Модели атрибуции, MMM, incrementality</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">aso</span><span class="purpose">App Store Optimization листинга приложения</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">churn-prevention</span><span class="purpose">Снижение оттока: cancel-flow, save offer, dunning</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">co-marketing</span><span class="purpose">Партнёрские совместные кампании</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">community-marketing</span><span class="purpose">Построение и рост онлайн-сообщества вокруг продукта</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">competitor-profiling</span><span class="purpose">Профилирование конкурентов по URL</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">competitors</span><span class="purpose">Страницы сравнения/альтернатив для SEO и продаж</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">competitive-ads-extractor</span><span class="purpose">Извлечение и анализ рекламы конкурентов из ad-библиотек</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">cro</span><span class="purpose">Оптимизация конверсии страниц и форм</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">customer-research</span><span class="purpose">Интервью, ICP, синтез отзывов, JTBD</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">directory-submissions</span><span class="purpose">Размещение продукта в каталогах/директориях</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">free-tools</span><span class="purpose">Бесплатные инструменты как канал лидогенерации</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">influencer-marketing</span><span class="purpose">Партнёрства с блогерами и амбассадорами</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">launch</span><span class="purpose">Планирование запуска продукта/фичи, Product Hunt</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">lead-magnets</span><span class="purpose">Лид-магниты: чек-листы, гайды, шаблоны</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">marketing-council</span><span class="purpose">Совет из "легендарных маркетологов" — разные точки зрения</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">marketing-ideas</span><span class="purpose">Идеи и стратегии продвижения, если не знаешь с чего начать</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">marketing-loops</span><span class="purpose">Виральные и growth-петли</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">marketing-plan</span><span class="purpose">Составление маркетинг-плана</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">marketing-psychology</span><span class="purpose">Психологические принципы в маркетинге</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">offers</span><span class="purpose">Формирование оффера: бонусы, гарантии, срочность</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">onboarding</span><span class="purpose">Онбординг новых пользователей в продукте</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">paywalls</span><span class="purpose">Пейволлы и апгрейд-флоу</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">popups</span><span class="purpose">Всплывающие окна/модалки для конверсии</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">pricing</span><span class="purpose">Ценообразование и страница цен</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">product-marketing</span><span class="purpose">Продуктовый маркетинг, позиционирование</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">programmatic-seo</span><span class="purpose">Программатик-SEO страницы</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">prospecting</span><span class="purpose">Поиск и квалификация лидов</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">public-relations</span><span class="purpose">PR и работа со СМИ</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">referrals</span><span class="purpose">Реферальные и партнёрские программы</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">signup</span><span class="purpose">Оптимизация флоу регистрации</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">aeo</span><span class="purpose">Answer Engine Optimization (дубль ai-seo, из другого маркетплейса)</span><span class="src marketplace">marketplace</span></div>
+</section>
+
+<!-- 07 RESEARCH -->
+<section class="shelf" id="research">
+  <div class="shelf-head"><h2>07 · Исследования и аналитика</h2><span class="count">14</span></div>
+  <div class="item"><span class="name">deep-research</span><span class="purpose">Автономное многошаговое исследование через Gemini Deep Research</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">deep-research</span><span class="purpose">Такой же по смыслу инструмент исследования из маркетплейса</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">revops</span><span class="purpose">Revenue operations, отчётность по выручке</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">sales-enablement</span><span class="purpose">Материалы для отдела продаж, battle cards</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">data-quality-auditor</span><span class="purpose">Аудит качества данных</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">statistical-analyst</span><span class="purpose">Статистический анализ данных</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">research-summarizer</span><span class="purpose">Суммаризация исследовательских материалов</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">research-orchestrator</span><span class="purpose">Оркестрация многошаговых исследовательских задач</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">research-ops-skills</span><span class="purpose">Операционные процессы research-команды</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">autoresearch-agent</span><span class="purpose">Автономный research-агент</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">litreview</span><span class="purpose">Обзор научной литературы</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">notebooklm</span><span class="purpose">Работа в стиле NotebookLM с источниками</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">dossier</span><span class="purpose">Сбор досье/справки по теме или персоне</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">universal-scraping-architect</span><span class="purpose">Проектирование скрейпинга данных с сайтов</span><span class="src marketplace">marketplace</span></div>
+</section>
+
+<!-- 08 DOCS -->
+<section class="shelf" id="docs">
+  <div class="shelf-head"><h2>08 · Документы и презентации</h2><span class="count">6</span></div>
+  <div class="item"><span class="name">slides</span><span class="purpose">Генерация слайд-дека (single-file, Chart.js)</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">pptx</span><span class="purpose">Создание/редактирование презентаций PowerPoint</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">docx</span><span class="purpose">Создание/редактирование документов Word</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">xlsx</span><span class="purpose">Создание/редактирование таблиц Excel</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">pdf</span><span class="purpose">Работа с PDF-файлами</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">demo-video</span><span class="purpose">Создание демонстрационного видео продукта</span><span class="src marketplace">marketplace</span></div>
+</section>
+
+<!-- 09 RESUME -->
+<section class="shelf" id="resume">
+  <div class="shelf-head"><h2>09 · Резюме и карьера</h2><span class="count">4</span></div>
+  <div class="item"><span class="name">resume-diagnoser</span><span class="purpose">Диагностика слабых мест резюме</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">resume-rewriter</span><span class="purpose">Переписывание резюме</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">resume-recruiter</span><span class="purpose">Взгляд на резюме глазами рекрутера</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">resume-hiring-manager</span><span class="purpose">Взгляд на резюме глазами нанимающего менеджера</span><span class="src vendored">vendored</span></div>
+</section>
+
+<!-- 10 BUSINESS -->
+<section class="shelf" id="business">
+  <div class="shelf-head"><h2>10 · Бизнес и C-level</h2><span class="count">17</span></div>
+  <div class="item"><span class="name">c-level-skills</span><span class="purpose">Набор навыков уровня C-level руководителя</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">c-level-agents</span><span class="purpose">Агенты-советники C-level</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">general-counsel-advisor</span><span class="purpose">Советник по юридическим вопросам компании</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">chief-data-officer-advisor</span><span class="purpose">Советник по data-стратегии</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">vpe-advisor</span><span class="purpose">Советник VP Engineering</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">chief-customer-officer-advisor</span><span class="purpose">Советник по клиентскому опыту</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">chief-ai-officer-advisor</span><span class="purpose">Советник по AI-стратегии компании</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">arquiteto-de-empresa</span><span class="purpose">Бизнес-архитектура компании</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">executive-mentor</span><span class="purpose">Менторство для руководителей</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">business-growth-skills</span><span class="purpose">Навыки роста бизнеса</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">business-operations-skills</span><span class="purpose">Операционное управление бизнесом</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">business-investment-advisor</span><span class="purpose">Советник по инвестиционным решениям</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">finance-skills</span><span class="purpose">Финансовый анализ и планирование</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">commercial-skills</span><span class="purpose">Коммерческие/продажные навыки</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">andreessen</span><span class="purpose">Стиль мышления в духе a16z-инвестора</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">grants</span><span class="purpose">Заявки на гранты</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">patent</span><span class="purpose">Работа с патентными материалами</span><span class="src marketplace">marketplace</span></div>
+</section>
+
+<!-- 11 PRODUCT -->
+<section class="shelf" id="product">
+  <div class="shelf-head"><h2>11 · Продукт и управление</h2><span class="count">7</span></div>
+  <div class="item"><span class="name">product-skills</span><span class="purpose">Набор продуктовых навыков</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">pm-skills</span><span class="purpose">Навыки продукт-менеджера</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">agile-product-owner</span><span class="purpose">Роль Product Owner в Agile-процессе</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">code-to-prd</span><span class="purpose">Восстановление PRD по существующему коду</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">feature-flags-architect</span><span class="purpose">Архитектура feature flags</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">workflow-builder</span><span class="purpose">Построение рабочих процессов/workflow</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">ra-qm-skills</span><span class="purpose">Regulatory Affairs / Quality Management навыки</span><span class="src marketplace">marketplace</span></div>
+</section>
+
+<!-- 12 ENGINEERING -->
+<section class="shelf" id="engineering">
+  <div class="shelf-head"><h2>12 · Инженерия и DevOps</h2><span class="count">18</span></div>
+  <div class="item"><span class="name">code-review</span><span class="purpose">Ревью диффа/PR на баги и упрощения</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">simplify</span><span class="purpose">Упрощение и переиспользование кода без багфикса</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">security-review</span><span class="purpose">Проверка кода на безопасность</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">run</span><span class="purpose">Запуск и проверка приложения "вживую"</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">mcp-builder</span><span class="purpose">Создание MCP-серверов</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">engineering-skills</span><span class="purpose">Базовые инженерные практики</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">engineering-advanced-skills</span><span class="purpose">Продвинутые инженерные практики</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">docker-development</span><span class="purpose">Разработка с использованием Docker</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">helm-chart-builder</span><span class="purpose">Сборка Helm-чартов для Kubernetes</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">terraform-patterns</span><span class="purpose">Паттерны инфраструктуры на Terraform</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">kubernetes-operator</span><span class="purpose">Разработка Kubernetes-операторов</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">chaos-engineering</span><span class="purpose">Chaos-инжиниринг для устойчивости систем</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">slo-architect</span><span class="purpose">Проектирование SLO/SLI</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">code-tour</span><span class="purpose">Экскурсия по кодовой базе для онбординга</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">zero-hallucination-coder</span><span class="purpose">Кодинг с минимизацией "галлюцинаций"</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">karpathy-coder</span><span class="purpose">Стиль кодинга в духе Andrej Karpathy</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">snowflake-development</span><span class="purpose">Разработка в Snowflake</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">handoff-engineering</span><span class="purpose">Передача задач между инженерами</span><span class="src marketplace">marketplace</span></div>
+</section>
+
+<!-- 13 AI -->
+<section class="shelf" id="ai">
+  <div class="shelf-head"><h2>13 · AI/LLM и агенты</h2><span class="count">10</span></div>
+  <div class="item"><span class="name">claude-api</span><span class="purpose">Справочник по Claude API / Anthropic SDK</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">skill-creator</span><span class="purpose">Создание новых скиллов Claude</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">context-engineering-collection</span><span class="purpose">Контекст-инжиниринг, multi-agent архитектуры</span><span class="src vendored">vendored</span></div>
+  <div class="item"><span class="name">llm-wiki</span><span class="purpose">Справочная база знаний по LLM</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">llm-cost-optimizer</span><span class="purpose">Оптимизация стоимости использования LLM</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">prompt-governance</span><span class="purpose">Управление и контроль качества промптов</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">agent-harness</span><span class="purpose">Обвязка (harness) для агентов</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">self-improving-agent</span><span class="purpose">Агент с самоулучшением по обратной связи</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">agenthub</span><span class="purpose">Каталог/хаб агентов</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">write-a-skill</span><span class="purpose">Написание нового скилла (альтернатива skill-creator)</span><span class="src marketplace">marketplace</span></div>
+</section>
+
+<!-- 14 COMPLIANCE -->
+<section class="shelf" id="compliance">
+  <div class="shelf-head"><h2>14 · Комплаенс и безопасность</h2><span class="count">6</span></div>
+  <div class="item"><span class="name">security-guidance</span><span class="purpose">Рекомендации по безопасности</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">compliance-os</span><span class="purpose">Операционная система комплаенс-процессов</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">compliance-team-eu-ai-act</span><span class="purpose">Соответствие EU AI Act</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">compliance-team-iso42001</span><span class="purpose">Соответствие стандарту ISO 42001</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">collab-proof</span><span class="purpose">Проверка материалов перед совместной работой</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">behuman</span><span class="purpose">Снижение "машинности" текста/поведения</span><span class="src marketplace">marketplace</span></div>
+</section>
+
+<!-- 15 PRODUCTIVITY -->
+<section class="shelf" id="productivity">
+  <div class="shelf-head"><h2>15 · Продуктивность</h2><span class="count">14</span></div>
+  <div class="item"><span class="name">morning</span><span class="purpose">Утренний ритуал/планирование дня</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">learn</span><span class="purpose">Структурированное изучение новой темы</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">loop</span><span class="purpose">Повторяющийся запуск промпта/команды по интервалу</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">update-config</span><span class="purpose">Настройка Claude Code через settings.json</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">keybindings-help</span><span class="purpose">Настройка горячих клавиш Claude Code</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">fewer-permission-prompts</span><span class="purpose">Сокращение числа запросов разрешений</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">weekly-review</span><span class="purpose">Еженедельный ретроспективный обзор</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">deep-work</span><span class="purpose">Организация периодов глубокой концентрации</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">meetings</span><span class="purpose">Подготовка и фиксация встреч</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">capture-skill</span><span class="purpose">Быстрая фиксация идей/заметок</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">reflect-skill</span><span class="purpose">Рефлексия по прошедшей работе</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">handoff-productivity</span><span class="purpose">Передача личных задач/контекста</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">grill-me</span><span class="purpose">Жёсткая проверка идеи через вопросы-возражения</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">roast</span><span class="purpose">Критический разбор ("роаст") материала</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">fable-goal</span><span class="purpose">Постановка и отслеживание целей</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">caveman</span><span class="purpose">Предельно простое, "первобытное" объяснение идеи</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">claude-coach</span><span class="purpose">Коучинг по эффективной работе с Claude</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">grill-with-docs</span><span class="purpose">Проверка идеи с опорой на документы</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">pulse</span><span class="purpose">Срез текущего состояния дел/проекта</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">skillopt-sleep</span><span class="purpose">Оптимизация сна/режима как часть продуктивности</span><span class="src marketplace">marketplace</span></div>
+</section>
+
+<!-- 16 AUTOMATION -->
+<section class="shelf" id="automation">
+  <div class="shelf-head"><h2>16 · Автоматизация и интеграции</h2><span class="count">6</span></div>
+  <div class="item"><span class="name">session-start-hook</span><span class="purpose">Хуки старта сессии Claude Code на веб/CI</span><span class="src platform">platform</span></div>
+  <div class="item"><span class="name">telegram</span><span class="purpose">Интеграция с Telegram Bot API</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">google-workspace-cli</span><span class="purpose">Работа с Google Workspace из CLI</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">pw</span><span class="purpose">Автоматизация браузера через Playwright</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">syllabus</span><span class="purpose">Составление учебной программы/плана курса</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">youtube-full</span><span class="purpose">Полный цикл работы с YouTube-контентом</span><span class="src marketplace">marketplace</span></div>
+  <div class="item"><span class="name">video-content-strategist</span><span class="purpose">Стратегия видео-контента</span><span class="src marketplace">marketplace</span></div>
+</section>
+
+<footer class="note">
+  Источники: <code>.agents/skills/</code> + <code>.claude/skills/</code> (94 скилла, провендорены с хешем в <code>skills-lock.json</code>), встроенные платформенные скиллы Claude, и 100 плагинов из маркетплейсов <code>alirezarezvani/claude-skills</code>, <code>Owl-Listener/designer-skills</code>, <code>bencium/bencium-claude-code-design-skill</code>, подключённых в <code>.claude/settings.json</code>. Репозиторий — <code>AnnShchuga/claude-workspace</code>.
+</footer>
+
+</div>
