@@ -143,31 +143,24 @@ h2.section-title{
 .section-head{
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 2rem;
   margin-bottom: clamp(2rem, 5vw, 3.5rem);
 }
 .section-head .lede{
-  max-width: 34ch;
+  max-width: 36ch;
   color: var(--walnut-2);
-  font-size: 1.02rem;
+  font-size: 1.2rem;
+  line-height: 1.5;
 }
 .on-dark .section-head .lede{ color: var(--sand); }
 #advantages .lede{
   font-family: var(--font-body);
-  font-style: italic;
   font-size: 1.15rem;
   line-height: 1.5;
   max-width: 34ch;
   color: var(--walnut);
 }
-
-.section-head-center{
-  display: block;
-  text-align: center;
-}
-.section-head-center .section-title{ margin-inline: auto; }
-.section-head-center .lede{ margin: .9rem auto 0; max-width: 46ch; }
 
 .pad{ padding-block: clamp(4rem, 9vw, 7.5rem); }
 .pad-sm{ padding-block: clamp(2.5rem, 5vw, 4rem); }
@@ -251,7 +244,7 @@ h2.section-title{
 .site-header.on-hero:not(.is-scrolled) .logo-mark-brown{ display: none; }
 .site-header.on-hero:not(.is-scrolled) .logo-mark-white{ display: block; }
 
-.main-nav{ display: flex; gap: clamp(1rem, 2vw, 2rem); }
+.main-nav{ display: flex; gap: clamp(.75rem, 1.6vw, 2rem); flex-shrink: 0; }
 .main-nav a{
   font-size: .92rem;
   font-weight: 600;
@@ -259,6 +252,7 @@ h2.section-title{
   padding-block: .3rem;
   border-bottom: 1.5px solid transparent;
   transition: border-color .2s, color .2s;
+  white-space: nowrap;
 }
 .site-header.on-hero:not(.is-scrolled) .main-nav a{ color: var(--sand); }
 .main-nav a:hover{ border-color: var(--brass); }
@@ -384,11 +378,12 @@ h2.section-title{
   font-size: clamp(1.02rem, 1.4vw, 1.18rem);
   color: rgba(247,243,238,.88);
 }
-.hero-cta{ display: flex; flex-wrap: wrap; gap: 1rem; margin-top: clamp(1.8rem, 3vw, 2.4rem); }
-.hero-chips{ display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.6rem; }
+.hero-cta{ display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 1rem; margin-top: clamp(1.8rem, 3vw, 2.4rem); }
+.hero-chips{ display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .6rem; margin-top: 1.6rem; }
 .hero-chip{
   font-family: var(--font-display); font-weight: 700; font-size: .8rem;
-  border: 1px solid rgba(247,243,238,.4); color: var(--cream);
+  border: 1px solid rgba(247,243,238,.25); color: var(--cream);
+  background: rgba(38,22,18,.4); backdrop-filter: blur(2px);
   padding: .5rem .95rem; border-radius: 999px;
 }
 
@@ -413,7 +408,7 @@ h2.section-title{
    ========================================================================== */
 .services-grid{
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: rgba(42,42,42,.1);
   border: 1px solid rgba(42,42,42,.1);
@@ -425,11 +420,11 @@ h2.section-title{
   transition: background .3s, transform .3s;
   position: relative;
 }
-.service-card:nth-child(1){ grid-column: span 3; }
+.service-card:nth-child(1){ grid-column: span 2; }
 .service-card:nth-child(2){ grid-column: span 1; }
 .service-card:nth-child(3){ grid-column: span 1; }
-.service-card:nth-child(4){ grid-column: span 3; }
-.service-card:nth-child(5){ grid-column: span 3; }
+.service-card:nth-child(4){ grid-column: span 2; }
+.service-card:nth-child(5){ grid-column: span 2; }
 .service-card:nth-child(6){ grid-column: span 1; }
 .service-card:hover{ background: var(--white); }
 .service-top{ display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1.6rem; }
@@ -439,7 +434,7 @@ h2.section-title{
   font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1; display:block;
   transition: color .3s;
 }
-.service-mark{ width: 40px; height: 36px; color: var(--walnut); flex: none; opacity: .85; transform-origin: 50% 60%; }
+.service-mark{ width: 40px; height: 36px; color: var(--walnut); flex: none; opacity: .85; transform-origin: 50% 60%; filter: url(#sketch-wobble); }
 .service-card:hover .service-mark{ color: var(--brass-dark); animation: mark-wiggle .5s var(--ease); }
 @keyframes mark-wiggle{
   0%, 100%{ transform: rotate(0); }
@@ -543,12 +538,12 @@ h2.section-title{
    in one grid row and every dd in the next, regardless of which value wraps. */
 .case-stat{ display: contents; }
 .case-detail-body dt{ grid-row: 2; align-self: end; font-size: .74rem; text-transform: uppercase; letter-spacing:.08em; color: var(--walnut-2); }
-.case-detail-body dd{ grid-row: 3; align-self: start; margin-top: .4rem; font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; color: var(--espresso); }
+.case-detail-body dd{ grid-row: 3; align-self: start; margin: .4rem 0 0; font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; color: var(--espresso); }
 .case-detail-body .case-stat:nth-of-type(1) dt, .case-detail-body .case-stat:nth-of-type(1) dd{ grid-column: 1; }
 .case-detail-body .case-stat:nth-of-type(2) dt, .case-detail-body .case-stat:nth-of-type(2) dd{ grid-column: 2; }
 .case-detail-body .case-stat:nth-of-type(3) dt, .case-detail-body .case-stat:nth-of-type(3) dd{ grid-column: 3; }
 .case-detail-body .case-stat:nth-of-type(4) dt, .case-detail-body .case-stat:nth-of-type(4) dd{ grid-column: 4; }
-.case-quote{ grid-row: 4; grid-column: span 4; font-family: var(--font-body); font-style: italic; font-weight: 400; font-size: 1.08rem; color: var(--walnut-2); border-top: 1px solid rgba(42,42,42,.08); padding-top: 1.4rem; }
+.case-quote{ grid-row: 4; grid-column: span 4; font-family: var(--font-body); font-weight: 400; font-size: 1.08rem; color: var(--walnut-2); border-top: 1px solid rgba(42,42,42,.08); padding-top: 1.4rem; }
 
 /* ==========================================================================
    Advantages (dark band)
@@ -790,8 +785,10 @@ h2.section-title{
 .grid-card .case-swatch{ transition: box-shadow .4s var(--ease); }
 
 .page-hero{ padding-block: clamp(7rem,12vw,9rem) clamp(2.5rem,5vw,3.5rem); }
-.page-hero h1{ font-size: clamp(2rem,4vw,3rem); max-width: 22ch; }
-.page-hero p{ margin-top: 1.2rem; max-width: 56ch; color: var(--walnut-2); font-size: 1.05rem; }
+.page-hero h1{ font-size: clamp(2rem,4vw,3rem); max-width: 24ch; }
+.page-hero > .wrap > p{ margin-top: 1.2rem; max-width: 56ch; color: var(--walnut-2); font-size: 1.05rem; }
+.page-hero .section-head{ margin-bottom: 0; }
+.page-hero .section-head .lede{ max-width: 46ch; }
 
 .filter-bar{ display:flex; flex-wrap: wrap; gap: .6rem; margin-bottom: clamp(2rem,4vw,3rem); }
 .filter-chip{

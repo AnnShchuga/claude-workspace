@@ -25,6 +25,10 @@
 <!-- ============================= SVG ICON SPRITE ============================= -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <defs>
+  <filter id="sketch-wobble" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.6" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
   <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
     <path d="M12 3l8 3.2v5.4c0 5-3.5 8-8 9.4-4.5-1.4-8-4.4-8-9.4V6.2z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/>
   </symbol>
@@ -192,14 +196,14 @@
       <span>416 ФОТО ПРОЕКТОВ <i>·</i></span>
       <span>ГАРАНТИЯ 1 ГОД <i>·</i></span>
       <span>СРОК 2–3 НЕДЕЛИ <i>·</i></span>
-      <span>ЛИЧНЫЙ КОНТРОЛЬ ЕВГЕНИЯ <i>·</i></span>
+      <span>ЛИЧНЫЙ КОНТРОЛЬ ВЛАДЕЛЬЦА <i>·</i></span>
       <span>СОБСТВЕННОЕ ПРОИЗВОДСТВО <i>·</i></span>
       <span>60+ ОТЗЫВОВ <i>·</i></span>
       <span>РЕЙТИНГ 4,93 <i>·</i></span>
       <span>416 ФОТО ПРОЕКТОВ <i>·</i></span>
       <span>ГАРАНТИЯ 1 ГОД <i>·</i></span>
       <span>СРОК 2–3 НЕДЕЛИ <i>·</i></span>
-      <span>ЛИЧНЫЙ КОНТРОЛЬ ЕВГЕНИЯ <i>·</i></span>
+      <span>ЛИЧНЫЙ КОНТРОЛЬ ВЛАДЕЛЬЦА <i>·</i></span>
       <span>СОБСТВЕННОЕ ПРОИЗВОДСТВО <i>·</i></span>
     </div>
   </div>
@@ -355,8 +359,10 @@
   <!-- ============================= PROCESS ============================= -->
   <section class="pad bg-cream hairline-top" id="process">
     <div class="wrap">
-      <div class="section-head section-head-center" data-reveal>
-        <h2 class="section-title">Семь понятных шагов от идеи до приёмки</h2>
+      <div class="section-head" data-reveal>
+        <div>
+          <h2 class="section-title">Семь понятных шагов от идеи до приёмки</h2>
+        </div>
         <p class="lede">Каждый этап зафиксирован в договоре — вы всегда знаете, что происходит с проектом.</p>
       </div>
 
@@ -465,8 +471,10 @@
   <!-- ============================= FAQ ============================= -->
   <section class="pad bg-cream hairline-top" id="faq">
     <div class="wrap">
-      <div class="section-head section-head-center" data-reveal>
-        <h2 class="section-title">Что обычно спрашивают перед заказом</h2>
+      <div class="section-head" data-reveal>
+        <div>
+          <h2 class="section-title">Что обычно спрашивают перед заказом</h2>
+        </div>
       </div>
 
       <div class="faq-list" data-reveal>
@@ -510,8 +518,8 @@
         <p class="lede">Расскажите, что планируете — кухню, шкаф или мебель на всю квартиру. Ответим в течение рабочего дня и предложим удобное время для замера.</p>
         <div class="cta-links">
           <a href="tel:+79267739777"><svg><use href="#icon-phone"/></svg><span>+7 926 773-97-77<span class="sub">Ежедневно, 08:00–21:00</span></span></a>
-          <a href="https://wa.me/79267739777" target="_blank" rel="noopener"><svg><use href="#icon-chat"/></svg><span>Написать в WhatsApp<span class="sub">Обычно отвечаем в течение часа</span></span></a>
           <a href="https://t.me/Eugene_grishaev" target="_blank" rel="noopener"><svg><use href="#icon-send"/></svg><span>Написать в Telegram<span class="sub">@Eugene_grishaev</span></span></a>
+          <a href="https://wa.me/79267739777" target="_blank" rel="noopener"><svg><use href="#icon-chat"/></svg><span>Написать в WhatsApp<span class="sub">Обычно отвечаем в течение часа</span></span></a>
           <a href="mailto:e.grishaev@gmail.com"><svg><use href="#icon-mail"/></svg><span>e.grishaev@gmail.com</span></a>
           <a href="#" id="mapLink"><svg><use href="#icon-pin"/></svg><span>г. Троицк, Дальняя ул., 6<span class="sub">Производство и шоурум</span></span></a>
         </div>
@@ -579,10 +587,11 @@
         <h5>Контакты</h5>
         <nav class="footer-links">
           <a href="tel:+79267739777">+7 926 773-97-77</a>
-          <a href="https://wa.me/79267739777" target="_blank" rel="noopener">WhatsApp</a>
           <a href="https://t.me/Eugene_grishaev" target="_blank" rel="noopener">Telegram</a>
+          <a href="https://wa.me/79267739777" target="_blank" rel="noopener">WhatsApp</a>
           <a href="mailto:e.grishaev@gmail.com">e.grishaev@gmail.com</a>
           <a href="https://profi.ru/profile/GrishayevYN" target="_blank" rel="noopener">Профи.ру</a>
+          <a href="https://t.me/s/grishaevmf" target="_blank" rel="noopener">Телеграм-канал мануфактуры</a>
         </nav>
       </div>
     </div>
