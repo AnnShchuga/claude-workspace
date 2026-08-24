@@ -378,8 +378,9 @@ h2.section-title{
   font-size: clamp(1.02rem, 1.4vw, 1.18rem);
   color: rgba(247,243,238,.88);
 }
-.hero-cta{ display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 1rem; margin-top: clamp(1.8rem, 3vw, 2.4rem); }
-.hero-chips{ display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .6rem; margin-top: 1.6rem; }
+.hero-cta-row{ display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem; margin-top: clamp(1.8rem, 3vw, 2.4rem); }
+.hero-cta{ display: flex; flex-wrap: wrap; gap: 1rem; }
+.hero-chips{ display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .6rem; margin-left: auto; }
 .hero-chip{
   font-family: var(--font-display); font-weight: 700; font-size: .8rem;
   border: 1px solid rgba(247,243,238,.25); color: var(--cream);
@@ -414,18 +415,12 @@ h2.section-title{
   border: 1px solid rgba(42,42,42,.1);
 }
 .service-card{
-  grid-column: span 2;
+  grid-column: span 1;
   background: var(--cream);
   padding: clamp(1.6rem, 3vw, 2.4rem);
   transition: background .3s, transform .3s;
   position: relative;
 }
-.service-card:nth-child(1){ grid-column: span 2; }
-.service-card:nth-child(2){ grid-column: span 1; }
-.service-card:nth-child(3){ grid-column: span 1; }
-.service-card:nth-child(4){ grid-column: span 2; }
-.service-card:nth-child(5){ grid-column: span 2; }
-.service-card:nth-child(6){ grid-column: span 1; }
 .service-card:hover{ background: var(--white); }
 .service-top{ display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1.6rem; }
 .service-card:hover .service-num{ color: var(--brass-dark); }
@@ -434,7 +429,7 @@ h2.section-title{
   font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1; display:block;
   transition: color .3s;
 }
-.service-mark{ width: 40px; height: 36px; color: var(--walnut); flex: none; opacity: .85; transform-origin: 50% 60%; filter: url(#sketch-wobble); }
+.service-mark{ width: 40px; height: 36px; color: var(--walnut); flex: none; opacity: .85; transform-origin: 50% 60%; }
 .service-card:hover .service-mark{ color: var(--brass-dark); animation: mark-wiggle .5s var(--ease); }
 @keyframes mark-wiggle{
   0%, 100%{ transform: rotate(0); }
