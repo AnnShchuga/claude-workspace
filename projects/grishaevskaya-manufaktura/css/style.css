@@ -141,9 +141,9 @@ h2.section-title{
 }
 
 .section-head{
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: start;
   gap: 2rem;
   margin-bottom: clamp(2rem, 5vw, 3.5rem);
 }
@@ -174,6 +174,12 @@ h2.section-title{
 .hairline-top{ border-top: 1px solid rgba(162,123,92,.25); }
 .on-dark.hairline-top{ border-top: 1px solid rgba(247,243,238,.12); }
 
+/* soft gradient blend where a section's background color actually changes
+   from the one above it (used instead of hairline-top for those boundaries) */
+.fade-cream-to-sand{ background: linear-gradient(180deg, var(--cream), var(--sand-2) 130px); }
+.fade-sand-to-cream{ background: linear-gradient(180deg, var(--sand-2), var(--cream) 130px); }
+.fade-dark-to-cream{ background: linear-gradient(180deg, var(--walnut-dark), var(--cream) 150px); }
+
 /* ---- buttons ---- */
 .btn{
   display: inline-flex;
@@ -183,7 +189,7 @@ h2.section-title{
   font-weight: 700;
   font-size: .95rem;
   padding: .95rem 1.6rem;
-  border-radius: 999px;
+  border-radius: 10px;
   transition: transform .25s var(--ease), background .25s, color .25s, box-shadow .25s;
   white-space: nowrap;
 }
@@ -328,7 +334,7 @@ h2.section-title{
 
 .hero-overlay{
   position: absolute; inset: 0; z-index: 4;
-  display: flex; align-items: flex-end;
+  display: flex; align-items: center;
   padding-block: clamp(2.5rem, 6vw, 4.5rem);
   pointer-events: none;
 }
@@ -378,15 +384,7 @@ h2.section-title{
   font-size: clamp(1.02rem, 1.4vw, 1.18rem);
   color: rgba(247,243,238,.88);
 }
-.hero-cta-row{ display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem; margin-top: clamp(1.8rem, 3vw, 2.4rem); }
-.hero-cta{ display: flex; flex-wrap: wrap; gap: 1rem; }
-.hero-chips{ display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .6rem; margin-left: auto; }
-.hero-chip{
-  font-family: var(--font-display); font-weight: 700; font-size: .8rem;
-  border: 1px solid rgba(247,243,238,.25); color: var(--cream);
-  background: rgba(38,22,18,.4); backdrop-filter: blur(2px);
-  padding: .5rem .95rem; border-radius: 999px;
-}
+.hero-cta{ display: flex; flex-wrap: wrap; gap: 1rem; margin-top: clamp(1.8rem, 3vw, 2.4rem); }
 
 /* ==========================================================================
    Marquee stat strip
@@ -421,6 +419,12 @@ h2.section-title{
   transition: background .3s, transform .3s;
   position: relative;
 }
+.service-card:nth-child(1){ grid-column: span 2; }
+.service-card:nth-child(2){ grid-column: span 1; }
+.service-card:nth-child(3){ grid-column: span 1; }
+.service-card:nth-child(4){ grid-column: span 2; }
+.service-card:nth-child(5){ grid-column: span 2; }
+.service-card:nth-child(6){ grid-column: span 1; }
 .service-card:hover{ background: var(--white); }
 .service-top{ display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1.6rem; }
 .service-card:hover .service-num{ color: var(--brass-dark); }
@@ -682,6 +686,17 @@ h2.section-title{
 .form-status{ font-size: .84rem; margin-top: .8rem; color: var(--accent-warm-dark); font-weight: 700; }
 
 /* ==========================================================================
+   Partners band
+   ========================================================================== */
+.partners-row{ display: flex; justify-content: space-between; align-items: center; gap: 1.6rem; flex-wrap: wrap; }
+.partners-eyebrow{
+  font-family: var(--font-display); font-weight: 700; font-size: .78rem;
+  text-transform: uppercase; letter-spacing: .12em; color: var(--brass-light);
+  margin-bottom: .6rem;
+}
+.partners-copy{ max-width: 52ch; font-size: 1.28rem; color: var(--sand); }
+
+/* ==========================================================================
    Footer
    ========================================================================== */
 .site-footer{ background: var(--walnut); color: rgba(247,243,238,.7); padding-block: clamp(2.5rem,5vw,4rem) 1.6rem; }
@@ -765,7 +780,7 @@ h2.section-title{
 .trust-chip{
   font-family: var(--font-display); font-weight: 700; font-size: .8rem;
   border: 1px solid rgba(42,42,42,.16); color: var(--walnut);
-  padding: .5rem .95rem; border-radius: 999px;
+  padding: .5rem .95rem; border-radius: 10px;
 }
 
 /* ==========================================================================
@@ -789,7 +804,7 @@ h2.section-title{
 .filter-chip{
   font-family: var(--font-display); font-weight: 700; font-size: .84rem;
   border: 1.5px solid rgba(42,42,42,.16); color: var(--walnut-2);
-  padding: .55rem 1.1rem; border-radius: 999px; transition: all .2s;
+  padding: .55rem 1.1rem; border-radius: 10px; transition: all .2s;
 }
 .filter-chip:hover{ border-color: var(--walnut); color: var(--walnut); }
 .filter-chip.is-active{ background: var(--walnut); border-color: var(--walnut); color: var(--cream); }
@@ -821,7 +836,7 @@ h2.section-title{
    Responsive
    ========================================================================== */
 @media (max-width: 780px){
-  .section-head{ flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .section-head{ grid-template-columns: 1fr; align-items: start; gap: 1rem; }
   .section-head .lede{ max-width: 60ch; }
 }
 
@@ -905,7 +920,7 @@ h2.section-title{
 .fab{
   display: flex; align-items: center; gap: .55rem;
   background: var(--walnut); color: var(--cream);
-  border: none; border-radius: 999px; cursor: pointer;
+  border: none; border-radius: 10px; cursor: pointer;
   padding: .85rem 1.1rem; font-family: var(--font-display); font-weight: 700; font-size: .84rem;
   box-shadow: 0 14px 28px -10px rgba(43,28,23,.5);
   transition: background .25s, transform .25s, box-shadow .25s;
