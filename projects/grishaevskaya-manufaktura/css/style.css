@@ -174,12 +174,6 @@ h2.section-title{
 .hairline-top{ border-top: 1px solid rgba(162,123,92,.25); }
 .on-dark.hairline-top{ border-top: 1px solid rgba(247,243,238,.12); }
 
-/* soft gradient blend where a section's background color actually changes
-   from the one above it (used instead of hairline-top for those boundaries) */
-.fade-cream-to-sand{ background: linear-gradient(180deg, var(--cream), var(--sand-2) 130px); }
-.fade-sand-to-cream{ background: linear-gradient(180deg, var(--sand-2), var(--cream) 130px); }
-.fade-dark-to-cream{ background: linear-gradient(180deg, var(--walnut-dark), var(--cream) 150px); }
-
 /* ---- buttons ---- */
 .btn{
   display: inline-flex;
@@ -189,7 +183,7 @@ h2.section-title{
   font-weight: 700;
   font-size: .95rem;
   padding: .95rem 1.6rem;
-  border-radius: 10px;
+  border-radius: 999px;
   transition: transform .25s var(--ease), background .25s, color .25s, box-shadow .25s;
   white-space: nowrap;
 }
@@ -433,12 +427,15 @@ h2.section-title{
   font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1; display:block;
   transition: color .3s;
 }
-.service-mark{ width: 40px; height: 36px; color: var(--walnut); flex: none; opacity: .85; transform-origin: 50% 60%; }
-.service-card:hover .service-mark{ color: var(--brass-dark); animation: mark-wiggle .5s var(--ease); }
-@keyframes mark-wiggle{
-  0%, 100%{ transform: rotate(0); }
-  25%{ transform: rotate(-4deg); }
-  75%{ transform: rotate(4deg); }
+.service-mark{ width: 40px; height: 36px; color: var(--walnut); flex: none; transform-origin: 50% 60%; }
+.service-mark path, .service-mark line, .service-mark circle{ stroke-dasharray: 1; stroke-dashoffset: 0; }
+.service-card:hover .service-mark{ color: var(--walnut-dark); }
+.service-card:hover .service-mark path,
+.service-card:hover .service-mark line,
+.service-card:hover .service-mark circle{ animation: mark-draw .6s var(--ease); }
+@keyframes mark-draw{
+  from{ stroke-dashoffset: 1; }
+  to{ stroke-dashoffset: 0; }
 }
 .service-card h3{ font-size: 1.15rem; margin-bottom: .5rem; }
 .service-card p{ color: var(--walnut-2); font-size: .92rem; max-width: 30ch; }
@@ -689,12 +686,8 @@ h2.section-title{
    Partners band
    ========================================================================== */
 .partners-row{ display: flex; justify-content: space-between; align-items: center; gap: 1.6rem; flex-wrap: wrap; }
-.partners-eyebrow{
-  font-family: var(--font-display); font-weight: 700; font-size: .78rem;
-  text-transform: uppercase; letter-spacing: .12em; color: var(--brass-light);
-  margin-bottom: .6rem;
-}
-.partners-copy{ max-width: 52ch; font-size: 1.28rem; color: var(--sand); }
+.partners-row h2{ font-size: clamp(1.8rem,3.4vw,2.6rem); max-width: 14ch; }
+.partners-row .lede{ margin-top: 1.2rem; max-width: 44ch; color: var(--walnut-2); }
 
 /* ==========================================================================
    Footer
@@ -706,8 +699,8 @@ h2.section-title{
 .footer-brand .lede-accent{ display: block; margin-bottom: .3rem; font-family: var(--font-accent); font-style: normal; font-size: 1.35em; line-height: 1.4; color: var(--cream); }
 .footer-grid h5{ font-family: var(--font-display); font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--sand); margin-bottom: 1rem; }
 .footer-links{ display:flex; flex-direction: column; gap: .7rem; }
-.footer-links a{ font-size: .88rem; }
-.footer-links a:hover{ color: var(--sand); }
+.footer-links a{ font-size: .88rem; text-underline-offset: 3px; text-decoration: underline; text-decoration-color: transparent; transition: color .2s, text-decoration-color .2s; }
+.footer-links a:hover{ color: var(--cream); text-decoration-color: var(--brass-light); }
 .footer-bottom{ border-top: 1px solid rgba(247,243,238,.18); padding-top: 1.2rem; display:flex; justify-content: space-between; gap: .8rem 1.6rem; flex-wrap: wrap; font-size: .78rem; color: rgba(247,243,238,.55); }
 .footer-legal{ display:flex; flex-wrap: wrap; gap: .5rem 1.2rem; }
 .footer-legal a{ color: var(--cream); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(247,243,238,.4); }
@@ -780,13 +773,13 @@ h2.section-title{
 .trust-chip{
   font-family: var(--font-display); font-weight: 700; font-size: .8rem;
   border: 1px solid rgba(42,42,42,.16); color: var(--walnut);
-  padding: .5rem .95rem; border-radius: 10px;
+  padding: .5rem .95rem; border-radius: 999px;
 }
 
 /* ==========================================================================
    Reusable "wood" media card — services menu, portfolio grid, materials
    ========================================================================== */
-.grid-cards{ display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.2rem, 2.4vw, 1.8rem); }
+.grid-cards{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.2rem, 2.4vw, 1.8rem); }
 .grid-card{ display: block; }
 .grid-card .case-swatch{ aspect-ratio: 4/3; }
 .grid-card .case-meta{ display:flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
@@ -804,7 +797,7 @@ h2.section-title{
 .filter-chip{
   font-family: var(--font-display); font-weight: 700; font-size: .84rem;
   border: 1.5px solid rgba(42,42,42,.16); color: var(--walnut-2);
-  padding: .55rem 1.1rem; border-radius: 10px; transition: all .2s;
+  padding: .55rem 1.1rem; border-radius: 999px; transition: all .2s;
 }
 .filter-chip:hover{ border-color: var(--walnut); color: var(--walnut); }
 .filter-chip.is-active{ background: var(--walnut); border-color: var(--walnut); color: var(--cream); }
@@ -829,7 +822,9 @@ h2.section-title{
 
 @media (prefers-reduced-motion: reduce){
   .video-slot .play{ animation: none; }
-  .service-card:hover .service-mark{ animation: none; }
+  .service-card:hover .service-mark path,
+  .service-card:hover .service-mark line,
+  .service-card:hover .service-mark circle{ animation: none; }
 }
 
 /* ==========================================================================
@@ -920,7 +915,7 @@ h2.section-title{
 .fab{
   display: flex; align-items: center; gap: .55rem;
   background: var(--walnut); color: var(--cream);
-  border: none; border-radius: 10px; cursor: pointer;
+  border: none; border-radius: 999px; cursor: pointer;
   padding: .85rem 1.1rem; font-family: var(--font-display); font-weight: 700; font-size: .84rem;
   box-shadow: 0 14px 28px -10px rgba(43,28,23,.5);
   transition: background .25s, transform .25s, box-shadow .25s;
