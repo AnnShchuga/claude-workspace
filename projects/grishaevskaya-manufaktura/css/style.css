@@ -193,7 +193,6 @@ h2.section-title{
   background: var(--walnut);
   color: var(--cream);
 }
-.btn-primary svg{ color: var(--brass-light); }
 .btn-primary:hover{ background: var(--walnut-dark); transform: translateY(-2px); box-shadow: 0 10px 24px -8px rgba(58,38,32,.55); }
 .btn-ghost{
   border: 1.5px solid var(--walnut);
