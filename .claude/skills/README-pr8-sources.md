@@ -15,8 +15,15 @@ Project skills for Claude Code, installed from public open-source skill reposito
 | `resume-rewriter` | [hohowin/misc-skills](https://github.com/hohowin/misc-skills) |
 | `resume-hiring-manager` | [hohowin/misc-skills](https://github.com/hohowin/misc-skills) |
 
+| `apple-design` | [emilkowalski/skills](https://github.com/emilkowalski/skills) — `skills/apple-design` |
+| `banana` | [AgriciDaniel/banana-claude](https://github.com/AgriciDaniel/banana-claude) — `skills/banana` |
+| `awesome-design-skills` | [bergside/awesome-design-skills](https://github.com/bergside/awesome-design-skills) — full 67-style registry, mirrored locally |
+
 The four `resume-*` skills didn't ship with YAML frontmatter upstream; it was added here so Claude Code can discover them.
 
 Some skills need extra setup before use:
 - `elevenlabs-remotion-skill` — requires `ELEVENLABS_API_KEY` in `.env.local` and Node.js.
 - `deep-research` — requires `GEMINI_API_KEY` and `pip install -r .claude/skills/deep-research/requirements.txt`.
+- `banana` — requires the `@ycse/nanobanana-mcp` MCP server and a Google AI API key (run `/banana setup`).
+
+Note: `taste-skill` (from [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill)) and `image-to-code` (an equivalent skill also sourced from Leonxlnx/taste-skill's `image-to-code-skill`) were already available system-wide before this PR and were left as-is rather than re-installed.
