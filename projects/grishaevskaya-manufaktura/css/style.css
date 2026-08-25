@@ -11,6 +11,13 @@
   font-display: swap;
 }
 @font-face{
+  font-family: 'Great Vibes';
+  src: url('../fonts/GreatVibes-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face{
   font-family: 'Inter';
   src: url('../fonts/Inter-Light.woff2') format('woff2');
   font-weight: 300;
@@ -694,7 +701,7 @@ h2.section-title{
 }
 .footer-signature .icon-heart{ display: inline-block; width: 15px; height: 15px; color: #C1503E; vertical-align: -2px; margin: 0 .3em; }
 .footer-signature a{
-  font-family: var(--font-accent);
+  font-family: 'Great Vibes', cursive;
   font-size: 1.7em;
   color: var(--sand);
   text-underline-offset: 3px;
