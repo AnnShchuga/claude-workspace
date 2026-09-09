@@ -19,6 +19,12 @@
       "skillPath": "skills/ads/SKILL.md",
       "computedHash": "569e690ae2defe2abaea3d63dc955e0af5d99cbe2b52d2cb977fd2039aae31a2"
     },
+    "after-effects": {
+      "source": "iart-ai/motion-design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/after-effects/SKILL.md",
+      "computedHash": "9db077d9664f5c45157c53b754d3c72bb346999a260c63d3d4892745a3eefd02"
+    },
     "ai-seo": {
       "source": "coreyhaines31/marketingskills",
       "sourceType": "github",
@@ -30,6 +36,12 @@
       "sourceType": "github",
       "skillPath": "skills/analytics/SKILL.md",
       "computedHash": "f7f83a1c1c4ad904deba3164076b0407df00832463e93d998b36efe781f26867"
+    },
+    "animation-principles": {
+      "source": "iart-ai/motion-design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/animation-principles/SKILL.md",
+      "computedHash": "140b00a44e08aa7649fb1cce1c48670ff2e76f3889fbac0b5311cc5bb818d7b7"
     },
     "aso": {
       "source": "coreyhaines31/marketingskills",
@@ -48,6 +60,12 @@
       "sourceType": "github",
       "skillPath": ".claude/skills/banner-design/SKILL.md",
       "computedHash": "82c86217829268afd1f86e89390270e35cb3a1761854a0bbe6180929614ae022"
+    },
+    "beat-sync-editing": {
+      "source": "iart-ai/motion-design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/beat-sync-editing/SKILL.md",
+      "computedHash": "4089a0b65782c529ebd4fe9a576588fb51cf716573b4d683b0494e6554e61e03"
     },
     "brand": {
       "source": "nextlevelbuilder/ui-ux-pro-max-skill",
@@ -72,6 +90,12 @@
       "sourceType": "github",
       "skillPath": "skills/cold-email/SKILL.md",
       "computedHash": "be0b73511a6244b8b8aa9126225844cfe9e492f4c1ee6bffc57344ce5ee2a6e8"
+    },
+    "color-motion": {
+      "source": "iart-ai/motion-design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/color-motion/SKILL.md",
+      "computedHash": "7c05f7d35427d5fbe2fd1b5b6c0622252314a049797085fce085085cbf4c3e6e"
     },
     "community-marketing": {
       "source": "coreyhaines31/marketingskills",
@@ -187,6 +211,12 @@
       "skillPath": "skills/lead-magnets/SKILL.md",
       "computedHash": "268c83c38cc49d3e437042f5d4e3c31b822deb6012b9d5d7a1370ae500058018"
     },
+    "logo-animation": {
+      "source": "iart-ai/motion-design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/logo-animation/SKILL.md",
+      "computedHash": "3bba34771ff84fa7e68dc8026e195aab411a82b01091c9427fc8f3c8e48e7d99"
+    },
     "marketing-council": {
       "source": "coreyhaines31/marketingskills",
       "sourceType": "github",
@@ -216,6 +246,18 @@
       "sourceType": "github",
       "skillPath": "skills/marketing-psychology/SKILL.md",
       "computedHash": "50d735eb0f5c36f379ed2200f21aeacc9b9ad85667b5d33ec6111857352a1340"
+    },
+    "motion-art-direction": {
+      "source": "iart-ai/motion-design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/motion-art-direction/SKILL.md",
+      "computedHash": "bcba09b729fd3d99b3b1a388c3aaac655a3771b26dc3e8d077a110dfdd9e1631"
+    },
+    "motion-background": {
+      "source": "iart-ai/motion-design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/motion-background/SKILL.md",
+      "computedHash": "99a576ac6549791b410abbc48a18074fed9e7925cf3ee5392108c59ad9e25fa4"
     },
     "offers": {
       "source": "coreyhaines31/marketingskills",
@@ -372,6 +414,12 @@
       "sourceType": "github",
       "skillPath": "skills/seo-audit/SKILL.md",
       "computedHash": "f2dc52130189068981f21e1c0bdc4471ac7cd9b08d8a1320604411aa0f950385"
+    },
+    "shot-composition": {
+      "source": "iart-ai/motion-design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/shot-composition/SKILL.md",
+      "computedHash": "9ff4551d175f951fb443a0680020871eb93c5ae07a0f36a2008ca98e5d0fa324"
     },
     "signup": {
       "source": "coreyhaines31/marketingskills",
