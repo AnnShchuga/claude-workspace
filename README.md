@@ -9,7 +9,7 @@
 - `projects/` — отдельные проекты/задачи, каждый в своей папке. Если проект вырастает настолько, что ему нужна отдельная история коммитов, свой CI или независимый релизный цикл — для него можно завести отдельный git-репозиторий (суб-репозиторий) внутри `AnnShchuga`, а здесь оставить ссылку.
 - `archive/` — старые черновики и материалы, которые не относятся к текущим проектам, но жалко удалять.
 - `.claude/skills/`, `.agents/skills/`, `agent/skills/`, `skills-lock.json` — установленные Claude Code скиллы (marketing, remotion, ui-ux-pro-max, resume-коучинг, deep-research и др.), перенесённые из накопившихся веток в `AnnShchuga/AnnShchuga`. `.claude/skills/*` — симлинки на `.agents/skills/*`.
-- `.claude/settings.json` — подключает маркетплейс [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills) (88 плагинов) и включает плагин `telegram`.
+- `.claude/settings.json` — подключает маркетплейсы [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills) (88 плагинов) и [`multica-ai/andrej-karpathy-skills`](https://github.com/multica-ai/andrej-karpathy-skills), и включает плагины `telegram` и `andrej-karpathy-skills` (поведенческие гайдлайны для кода на основе наблюдений Andrej Karpathy: думать перед кодингом, простота, точечные правки, цели с критериями проверки).
 
 ## Текущие проекты
 
