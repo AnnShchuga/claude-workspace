@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "lottiefiles": {
+      "command": "npx",
+      "args": ["-y", "mcp-server-lottiefiles"]
+    }
+  }
+}
